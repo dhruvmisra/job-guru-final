@@ -1,0 +1,21 @@
+.heading {
+    z-index: 1;
+}
+.heading > h1 > span {
+    color: var(--primary);
+}
+.study {
+    padding-top: 120px;
+}
+.study:nth-child(odd) {
+    background-color: var(--dark);
+    color: white;
+}
+.study-img {
+    width: 300px;
+    height: 300px;
+}
+.study-name span {
+    font-size: 0.8em;
+    color: var(--secondary);
+}

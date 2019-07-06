@@ -1,0 +1,154 @@
+/* Jumbotron */
+
+
+/* Who we are */
+.who-text {
+    padding-top: 100px;
+}
+.who-text > span {
+    color: var(--primary);
+}
+.video {
+    height: 550px;
+    width: 100%;
+    margin: 30px auto;
+    border-radius: 10px;
+    background-color: rgb(233, 233, 255);
+    box-shadow: 0px -2px 20px rgb(218, 218, 218);
+    z-index: 2;
+}
+
+.fact {
+    font-size: 1.4em;
+    margin-top: 150px;
+    margin-bottom: 100px;
+}
+.heading {
+    margin-top: 2em;
+    z-index: 1;
+}
+.heading > h2 > span {
+    color: var(--primary);
+}
+.text-sm {
+    font-size: 0.9em;
+}
+
+/* Numbers */
+.numbers {
+    margin-top: -13em;
+    padding-top: 22em;
+    padding-bottom: 0;
+}
+.number-card {
+    margin: 20px;
+    border: none;
+}
+.number {
+    font-size: 4.5em;
+    color: var(--primary);
+    margin-bottom: 0;
+}
+
+.sign-btn {
+    display: block;
+    margin: 0 auto;
+    margin-top: 25px;
+    color: white;
+    background-color: var(--secondary);
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.sign-btn:hover {
+    color: white;
+    background-color: rgb(35, 146, 135);
+}
+
+/* Packages */
+.packages {
+    padding-top: 50px;
+}
+.package {
+    width: 400px;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 12px;
+    margin: 30px;
+    border-radius: 15px;
+    border: none;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+}
+.price {
+    color: white;
+    padding-bottom: 15px;
+}
+.package-info {
+    list-style-type: none;
+    padding-left: 0;
+}
+.buy-btn {
+    display: block;
+    margin: 0 auto;
+    margin-top: 25px;
+    color: white;
+    border-radius: 5px;
+    background-color: var(--red);
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+.buy-btn:hover {
+    color: white;
+    background-color: rgb(201, 25, 45);
+}
+.package.standard {
+    background: rgb(88,41,5);
+    background: linear-gradient(45deg, rgba(88,41,5,1) 0%, rgba(228,166,43,1) 100%);
+}
+.package.standard::before, .package.premium::before {
+    content: '';
+    position: absolute;
+    right: 30px;
+    top: 0;
+    width: 30px;
+    height: 70px;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 80%, 0% 100%);
+}
+.package.standard::before {
+    background-color: var(--red);
+}
+.package.premium {
+    background: rgb(1,22,39);
+    background: linear-gradient(45deg, rgba(1,22,39,1) 0%, rgba(0,79,141,1) 100%);
+}
+.package.premium::before {
+    background-color: var(--primary);
+}
+
+
+.template-btn {
+    color: white;
+    padding: 10px;
+    background-color: var(--secondary);
+}
+.template-btn:hover {
+    color: white;
+    padding: 10px;
+    background-color: rgb(35, 146, 135);
+}
+
+/* Testimonials */
+.testimonials > h2 {
+    text-align: center;
+    margin-top: 10%;
+    color: var(--secondary);
+}
+.testimonial {
+    padding: 20px;
+    border: none;
+    box-shadow: 1px 1px 3px rgb(206, 206, 206);
+}
+.t-img {
+    width: 100px;
+    height: 100px;
+}
+.t-info {
+    padding: 20px;
+}

@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto|Montserrat:400,600,700,900&display=swap');
+
+:root {
+    --dark: #011627;
+    --light: #F8F9FA;
+    --primary: #FF9F1C;
+    --secondary: #2EC4B6;
+    --red: #E71D36;
+}
+
+body {
+    font-family: 'Montserrat' !important;
+    /* overflow-x: hidden; */
+}
+h1, h2 {
+    font-weight: 700;
+}
+h3, h4 {
+    font-weight: 600;
+}
+.btn {
+    border: none;
+    border-radius: 0;
+    padding: 10px 30px;
+}
+.row {
+    width: 100%;
+}
+
+/* Navbar */
+.navbar {
+    font-size: 1.1em;
+    background-color: var(--dark);
+    z-index: 1;
+}
+
+/* Jumbotron */
+.jumbotron {
+    position: relative;
+    margin-bottom: 0;
+    padding-top: 5em;
+    padding-bottom: 6em;
+    color: white;
+    background-color: var(--dark);
+}
+.jumbo-text {
+    text-align: center;
+    margin: 0 auto;
+}
+.btn-primary {
+    color: white;
+}
+.btn-primary:hover {
+    color: white;
+}
+
+/* Curved art */
+.curve {
+    position: relative;
+    border: none;
+    width: 100%;
+    margin-top: -175px;
+    padding-bottom: 130px;
+    clip-path: circle(4000px at 50% 4100px);
+    z-index: 0;
+}
+
+.slick-slide {
+    margin: 10px;
+}

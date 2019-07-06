@@ -1,0 +1,23 @@
+const m = new Map();
+m.set('Adaptable', 'I have the ability to change my actions, course or approach to doing things in order to suit a new situation.')
+m.set('Attentive to detail', 'I have the ability to manipulate small pieces of data with accuracy and focus.')
+m.set('Collaborative', 'The most effective skill that helps in building trust, knowing how to understand a variety of perspectives, manage priorities from everyone in the group, and then decisively meet expectations as a reliable member of a team.')
+m.set('Communication', 'The act of transferring information from one person/place to another. It may be vocally, written, visually or non-verbally.')
+m.set('Creative', 'I have the ability to perceive the world in new ways, to find hidden patterns, to make connections between seemingly unrelated phenomena, and to generate solutions.')
+m.set('Curious', 'Curiosity is a leadership skill that will help you lead others, increase engagement, and gain collaboration. Curiosity comes from the intention to understand, learn, or know more about someone or something.')
+m.set('Customer service', 'As a job, customer service professionals are responsible for addressing customer needs and ensuring they have a good experience. As a skill set, customer service entails several qualities like active listening, empathy, problem-solving and communication.')
+m.set('Daring', 'I like to take calculated risks and push boundaries.')
+m.set('Decision making', 'The skill of decision making involves choosing between possible solutions to a problem.')
+m.set('Empathy', 'I have the ability to understand the other\'s situation, perceptions and feelings from their point of view.')
+m.set('Leadership', 'I have the ability to think strategically, planning and delivery, people management, change management, communication, and persuasion and influencing.')
+m.set('Multitasking', 'I can handle multiple tasks at hand with efficiency.')
+m.set('Passion', 'I love to do the task which fascinates me.')
+m.set('Positivity', 'I view a task with a can-do attitude and optimism.')
+m.set('Presentation', 'I have the ability to deliver an effective and engaging presentations to a variety of audiences.')
+m.set('Problem solving', 'I try to solve a problem through creativity, research, team work, risk management and decision making.')
+m.set('Self-motivation', 'I have the ability to do the task on their own without the influence from others.')
+m.set('Teamwork', 'I am good at working with other people to achieve a common goal.')
+m.set('Time management', 'I have the ability to differentiate between important and urgent work and prioritizing what needs to be done first.')
+m.set('Work ethic', 'I believe honesty, punctuality, responsibility and reliability are all integral to a strong work ethic.')
+
+export default m;
