@@ -10,160 +10,176 @@
           </div>
         </div>
 
-        <div class="categories container" v-else>
-          <div class="row mx-auto justify-content-around">
+        <div class="container text-center jumbo-text">
+          <h1 class="text-white">Having talent and still not getting suitable jobs?</h1>
+          <p class="text-muted">So here is JobGuru for you to get your dream jobs by hand-crafting your resume.</p>
+          <button @click="buyNow" class="btn btn-primary btn-lg mb-5">Buy Now</button>
+        </div>
 
-            <div class="card category bg-primary">
-              <h1 class="card-title">Student</h1>
-              <hr>
-              <button type="button" class="btn card-body" data-toggle="modal" data-target="#studentModal">
-                Looking for an internship
-              </button>
-            </div>
+        <!-- Who are we -->
+        <h1 class="who-text text-center"> <span>Job</span> Excellence Course</h1>
+        <div class="whoWeAre">
 
-            <!-- Student Modal -->
-            <div class="modal fade" id="studentModal" tabindex="-1" role="dialog" aria-labelledby="studentModal" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header my-4 mx-4">
-                    <h4 class="modal-title text-center" id="exampleModalCenterTitle">Looking for an internship?</h4>
-                  </div>
+          <div class="video card"></div>
 
-                  <div class="modal-body my-4">
-                    <ul>
-                      <li>Some very convincing stuff</li>
-                      <li>How can you say no after this point?</li>
-                      <li>Just buy it man</li>
-                    </ul>
-                  </div>
-                  <div class="modal-footer mx-auto">
-                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-                    <a href="/signup" class="btn btn-primary">Register now</a>
-                  </div>
-                </div>
-              </div>
-            </div>
+        </div>
+
+
+      </div>
+
+
+      <!-- What we can do -->
+      <div class="card numbers curve">    
+        <!-- Numbers -->
+        <div class="container">
+          <div class="row justify-content-around">
             
-            <div class="card category bg-primary">
-              <h1 class="card-title">Fresher</h1>
-              <hr>
-              <button type="button" class="btn card-body" data-toggle="modal" data-target="#fresherModal">
-                Looking for a job
-              </button>
-            </div>
-
-            <!-- Fresher Modal -->
-            <div class="modal fade" id="fresherModal" tabindex="-1" role="dialog" aria-labelledby="fresherModal" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalCenterTitle">Looking for a job?</h4>
-                  </div>
-
-                  <div class="modal-body">
-                    <ul>
-                      <li>Some very convincing stuff</li>
-                      <li>How can you say no after this point?</li>
-                      <li>Just buy it man</li>
-                    </ul>
-                  </div>
-                  <div class="modal-footer mx-auto">
-                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-                    <a href="/signup" class="btn btn-primary">Register now</a>
-                  </div>
-                </div>
+            <div class="card number-card">
+              <div class="card-body text-center">
+                <p class="number">500+</p>
+                <p class="number-text">Courses sold</p>
               </div>
             </div>
 
-
-            <div class="card category bg-primary">
-              <h1 class="card-title">Professional</h1>
-              <hr>
-              <button type="button" class="btn card-body" data-toggle="modal" data-target="#professionalModal">
-                Looking for a job change
-              </button>
+            <div class="card number-card">
+              <div class="card-body text-center">
+                <p class="number">340</p>
+                <p>Users currently viewing</p>
+              </div>
             </div>
 
-            <!-- Professional Modal -->
-            <div class="modal fade" id="professionalModal" tabindex="-1" role="dialog" aria-labelledby="professionalModal" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalCenterTitle">Looking for a job change?</h4>
-                  </div>
-
-                  <div class="modal-body">
-                    <ul>
-                      <li>Some very convincing stuff</li>
-                      <li>How can you say no after this point?</li>
-                      <li>Just buy it man</li>
-                    </ul>
-                  </div>
-                  <div class="modal-footer mx-auto">
-                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-                    <a href="/signup" class="btn btn-primary">Register now</a>
-                  </div>
-                </div>
+            <div class="card number-card">
+              <div class="card-body text-center">
+                <p class="number">540</p>
+                <p>Users currently viewing</p>
               </div>
             </div>
 
           </div>
         </div>
 
-        <div class="card-main curve">
-          <div class="container text-center">
-            <h1 class="text-dark">Having talent and still not getting suitable jobs?</h1>
-            <p class="text-muted">So here is JobGuru for you to get your dream jobs by hand-crafting your resume.</p>
-            <button @click="buyNow" class="btn btn-primary btn-lg mb-5">Buy Now</button>
+        <h4 class="text-center">Only limited registrations available</h4>
+        <a class="btn sign-btn sign-btn" 
+            style="width: fit-content; margin: 15px auto;" 
+            href="#" 
+            role="button">Buy Now</a>
+      
+      </div>
+
+      <div class="card curve what-you-get">
+        <div class="heading">
+          <h2><span>What will </span> you get?</h2>
+          <p class="text-muted text-sm">We give you the best personality development course
+              which will help you get closer to your dream job.</p>
+        </div>
+
+        <div class="row justify-content-center">
+
+          <div class="card feature">
+            <div class="feature-img">
+              <img src="../assets/feature1.jpg" alt="" class="w-100 h-100">
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">50 Days Online Training</h4>
+              <p>You Will Get An Online Course of 50+ Training Video Sessions To 
+                Learn Everything It Takes To transform Yourself Completely.</p>
+            </div>
           </div>
+
+          <div class="card feature">
+            <div class="feature-img">
+              <img src="../assets/feature2.jpg" alt="" class="w-100 h-100">
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">E - Book</h4>
+              <p>A Complete Guide To All Your Questions Which In Itself Is The Complete Course Elaborated!</p>
+            </div>
+          </div>
+
+          <div class="card feature">
+            <div class="feature-img">
+              <img src="../assets/feature3.jpg" alt="" class="w-100 h-100">
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">Workbook</h4>
+              <p>A WorkBook To Do It Yourself! Action Plans To Work On and 
+                Question To Answer To Deepen Your Understanding and 
+                Preparing The Warrior Inside You For The Real Battle Of Life!</p>
+            </div>
+          </div>
+
+          <div class="card feature">
+            <div class="feature-img">
+              <img src="../assets/feature4.jpg" alt="" class="w-100 h-100">
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">Certificate</h4>
+              <p>This Course Will Transform Your Personality and Will Make You The 
+                Best Version Of YourSelf!On Completing The Comprehensive Course 
+                Provide You With The Certificate Signed By PRT!</p>
+            </div>
+          </div>
+
         </div>
 
       </div>
 
-      <!-- What we can do
-      <div class="card numbers curve">    -->
+      <!-- Resume section -->
+      <div class="card resume curve">
+          <!-- <p class="fact col-md-6 mx-auto text-center text-muted">According to a study/research, it is found that over 
+            65% of the candidates don’t get an interview call because of how their resume is built.</p> -->
+            
+        <div class="row justify-content-center pt-5">
+          <div class="col-md-4 resume-img">
+            <img src="../assets/resume.png" alt="" class="h-100">
+          </div>
 
-      <!-- Packages -->
-      <!-- <div class="card curve packages" style="position: absolute">
-        <div class="heading main container text-center">
-          <h1 class="">Having talent and still not getting suitable jobs?</h1>
-          <p class="lead">So here is JobGuru for you to get your dream jobs by hand-crafting your resume.</p>
-          <button @click="buyNow" class="btn btn-primary btn-lg mb-5">Buy Now</button>
-        </div>
-      </div> -->
+          <div class="col-md-5">
+              <div class="heading">
+                <h1><span>Building</span> <br>your resume</h1>
+                <p class="text-muted text-sm">We create a professional looking resume just from the basic information 
+                  you provide to us.</p>
+              </div>
+              <ul class="points">
+                <li>Fill the form to share us your basic information.</li>
+                <li>Sit back and relax, our team will build the resume for you and email you within 24 hrs.</li>
+              </ul>
 
-        <!-- <div class="heading packages text-center">
-          <h2><span>Our</span> Packages</h2>
-          <p class="text-muted text-sm">The services we provide are unparalleled</p>
+              <p class="text-muted mt-5">Your future resume:</p>
+              <button class="btn btn-info">View a template</button>
+          </div>
         </div>
+      </div>
+
+      <!-- PD section -->
+      <div class="card pd curve">
+        <!-- <p class="fact col-md-6 mx-auto text-center text-muted">Over 70% of the candidates are rejected 
+          within the initial five seconds of the interview because they lack the right attitude and 
+          personality to impress the recruiter/interviewee.</p> -->
         
+        <div class="row justify-content-center pt-5">
+          <div class="col-md-5">
+              <div class="heading">
+                <h1><span>Personality Development </span> <br>course to shape your future</h1>
+                <p class="text-muted text-sm">We give you the best personality development course
+                  which will help you get closer to your dream job.</p>              
+              </div>
+              <ul class="points">
+                <li>Unnecessary information</li>
+                <li>Some more unnecessary information</li>
+                <li>Making no sense whatsoever</li>
+              </ul>
 
-        <div class="row justify-content-center">
-          
-          <div class="card package standard">
-            <div class="card-body">
-              <h2 class="price">₹799</h2>
-              <ul class="package-info align-middle pb-3 pt-2">
-                <li>Resume Building</li>
-                <li>Personality Development Course</li>
-              </ul>
-              <button class="btn buy-btn">Buy Now</button>
-            </div>
-          </div>
-          
-          <div class="card package premium">
-            <div class="card-body">
-              <h2 class="price">₹1,499</h2>
-              <ul class="package-info align-middle">
-                <li>Resume Building</li>
-                <li>Personality Development Course</li>
-                <li>Specialised Support</li>
-              </ul>
-              <button class="btn buy-btn">Buy Now</button>
-            </div>
           </div>
 
-        </div> -->
+          <div class="col-md-3">
+            <img src="../assets/pd.png" alt="" class="resume-img">
+          </div>
+      
+      
+        </div>
+      </div>
+
 
 
   </div>
@@ -223,6 +239,104 @@
   .loggedIn {
     background: linear-gradient(0deg, rgba(1, 22, 39, 0.5), rgba(1, 22, 39, 1)), url('../assets/loggedIn.jpg');
   } */
+  .jumbo-text {
+    padding-top: 8em;
+  }
+
+  /* Who we are */
+  .who-text {
+      padding-top: 1em;
+  }
+  .who-text > span {
+      color: var(--primary);
+  }
+  .video {
+      height: 680px;
+      width: 80%;
+      margin: 30px auto;
+      border-radius: 10px;
+      background-color: black;
+      background-image: url('../assets/course.jpg');
+      background-size: cover;
+      box-shadow: 0px -2px 20px rgb(218, 218, 218);
+      z-index: 2;
+  }
+
+  /* Numbers */
+  .numbers {
+      margin-top: -25em;
+      padding-top: 22em;
+      padding-bottom: 8em;
+  }
+  .number-card {
+      margin: 20px;
+      border: none;
+  }
+  .number {
+      font-size: 4.5em;
+      color: var(--primary);
+      margin-bottom: 0;
+  }
+
+  /* Curve classes */
+  .curve > .row {
+    margin-top: 8em;
+  }
+
+  .curve:nth-child(odd) {
+      background-color: var(--light);
+  }
+
+  /* Resume */
+  .resume-img {
+      width: 350px;
+      height: 350px;
+  }
+  .resume-img::before {
+      content: '';
+      position: absolute;
+      top: 30px;
+      left: 100px;
+      width: 200px;
+      height: 300px;
+      opacity: 0;
+      background-color: rgba(46, 196, 181, 0.5);
+      z-index: -1;
+      animation: fade-in-up 0.6s ease-out forwards;
+  }
+  .points {
+      font-size: 1.1em;
+      padding: 10px 0;
+      padding-left: 1em;
+      list-style-type: square;
+  }
+  .points > li {
+    margin-top: 10px;
+  }
+
+  /* Features */
+  .what-you-get > .heading {
+    padding-top: 6em;
+    text-align: center;
+  }
+  .feature {
+    width: 18em;
+    border: none;
+    background: transparent;
+    text-align: center;
+  }
+  .feature > .card-body > .card-title {
+    transition: all 0.2s ease-out;
+  }
+
+  .feature:hover > .card-body > .card-title {
+    color: var(--primary);
+  }
+  .feature-img {
+    height: 280px;
+    width: 280px;
+  }
+
   .categories {
     padding-bottom: 10em;
   }
