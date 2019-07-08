@@ -1,24 +1,24 @@
 <template>
   <div>
     <button class="btn btn-secondary" @click="generate">Generate</button>
-    <div id="resume" v-show="false">
+    <div id="resume">
       <div class="">
 
         <div class="card resume-header bg-dark text-white">
           <div class="card-body">
             <div class="row">
-              <div class="col-md-4">
-                <div class="mx-auto mt-2 image border rounded-circle"></div>
+              <div class="resume-img-section">
+                <div class="mx-auto mt-2 resume-img border rounded-circle"></div>
               </div>
-              <div class="col-md-8 my-auto">
-                <h1 class="name">{{ user.firstName }} {{ user.lastName }}</h1>
+              <div class="resume-name-section my-auto">
+                <h1 class="resume-name">{{ user.firstName }} {{ user.lastName }}</h1>
               </div>
             </div>
           </div>
         </div>
 
         <div class="row">
-          <div class="card resume-side col-lg-4">
+          <div class="card resume-side">
             <div class="card-body">
               <div class="contact">
                 <h2 class="title text-muted">CONTACT</h2>
@@ -44,7 +44,7 @@
             </div>
           </div>
 
-          <div class="card resume-main col-lg-8">
+          <div class="card resume-main">
             <div class="card-body">
               <div class="education">
                 <h2 class="title text-muted">EDUCATION</h2>
@@ -194,55 +194,57 @@
 
         const email = 'dhruvmisra@live.com';
 
-        await axios('http://192.168.0.137:3000/v1/getUserData/' + email)
-          .then(res => {
-            this.user.achievements = [];
-            res.data.achievements.arrayValue.values.forEach(e => {
-              this.user.achievements.push(e.mapValue.fields);
-            });
-            this.user.achievements.forEach(e => {
-              e.desc = e.desc.stringValue;
-              e.title = e.title.stringValue;
-            });
+        // await axios('http://192.168.0.137:3000/v1/getUserData/' + email)
+        //   .then(res => {
+        //     this.user.achievements = [];
+        //     res.data.achievements.arrayValue.values.forEach(e => {
+        //       this.user.achievements.push(e.mapValue.fields);
+        //     });
+        //     this.user.achievements.forEach(e => {
+        //       e.desc = e.desc.stringValue;
+        //       e.title = e.title.stringValue;
+        //     });
 
             
-            console.log(res.data);
-          });
+        //     console.log(res.data);
+        //   });
 
           let resume = document.getElementById('resume');   
           let height = resume.clientHeight/6.5;
+          resume.classList.remove('hide');
           html2canvas(resume).then(canvas => {
-          let pdf = new jsPDF('p', 'mm', 'a4');
-          pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 211, height, 'resume', 'SLOW');
-          pdf.save('a4.pdf');
-          const blob = pdf.output('blob');
+            let pdf = new jsPDF('p', 'mm', 'a4');
+            console.log(canvas.toDataURL('image/png'));
+            pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 211, height, 'resume', 'SLOW');
+            pdf.save('a4.pdf');
+            const blob = pdf.output('blob');
 
-          // uploadFile(blob)
-          //   .then(res => {
-          //     console.log(res);
-          //   });
+            // uploadFile(blob)
+            //   .then(res => {
+            //     console.log(res);
+            //   });
 
-          function uploadFile(file) {
-            return new Promise(
-              (resolve, reject) => {
-                const almostUniqueFileName = Date.now().toString();
-                const upload = firebase.storage().ref()
-                  .child('users/' + email).put(file);
-                upload.on(firebase.storage.TaskEvent.STATE_CHANGED,
-                  () => {
-                    console.log('Uploaded');
-                  },
-                  (error) => {
-                    console.log('Error : ' + error);
-                    reject();
-                  },
-                  () => {
-                    resolve(upload.snapshot.downloadURL);
-                  }
-                );
-              }
-            );
-}
+            function uploadFile(file) {
+              return new Promise(
+                (resolve, reject) => {
+                  const almostUniqueFileName = Date.now().toString();
+                  const upload = firebase.storage().ref()
+                    .child('users/' + email).put(file);
+                  upload.on(firebase.storage.TaskEvent.STATE_CHANGED,
+                    () => {
+                      console.log('Uploaded');
+                    },
+                    (error) => {
+                      console.log('Error : ' + error);
+                      reject();
+                    },
+                    () => {
+                      resolve(upload.snapshot.downloadURL);
+                    }
+                  );
+                }
+              );
+            }
         });
         // let margins = {
         //   top: 70,
@@ -327,8 +329,10 @@
   }
 
   #resume {
+    position: absolute;
+    /* left: -1500px; */
     width: 1480px;
-    font-size: 1.3em;
+    font-size: 1.5em;
     margin: 20px;
   }
   .resume-header {
@@ -338,18 +342,29 @@
     background-position: center;
     
   }
-
-  .resume-side {
-    background-color: rgb(241, 241, 241);
+  .resume-img-section {
+    width: 35%;
   }
-  .image {
+  .resume-img {
     width: 200px;
     height: 200px;
     background-color: rgb(240, 255, 254);
   }
-  .name {
+  .resume-name-section {
+    width: 65%;
+  }
+  .resume-name {
     font-size: 4em;
   }
+  
+  .resume-side {
+    width: 32%;
+    background-color: rgb(241, 241, 241);
+  }
+  .resume-main {
+    width: 68%;
+  }
+
   .personal {
     margin-top: 50px;
   }
