@@ -1,7 +1,7 @@
 <template>
   <div>
     <button class="btn btn-secondary" @click="generate">Generate</button>
-    <div id="resume">
+    <div id="resume" v-show="false">
       <div class="">
 
         <div class="card resume-header bg-dark text-white">
@@ -95,6 +95,7 @@
 
 <script>
   import firebase from '../firebase';
+  import axios from 'axios'
   import jsPDF from 'jspdf';
   import html2canvas from 'html2canvas';
   import map from '../skills-map';
@@ -183,19 +184,65 @@
     },
     methods: {
       async generate() {
-        await firebase.database().ref('users').orderByChild('id').once('value', snap => {
-          this.user = snap.val();
-          this.user = this.user['-LiCMWrIFKu1k4TEhapU'];
-          this.checkPresent();
-          this.fillAbout();
-        })  
+        // await firebase.database().ref('users').orderByChild('id').once('value', snap => {
+        //   this.user = snap.val();
+        //   this.user = this.user['-LiCMWrIFKu1k4TEhapU'];
+        //   console.log(JSON.stringify(this.user));          
+        //   this.checkPresent();
+        //   this.fillAbout();
+        // })  
 
-        let resume = document.querySelector('#resume');
-        let height = resume.clientHeight/6.5;
-        html2canvas(resume).then(canvas => {
+        const email = 'dhruvmisra@live.com';
+
+        await axios('http://192.168.0.137:3000/v1/getUserData/' + email)
+          .then(res => {
+            this.user.achievements = [];
+            res.data.achievements.arrayValue.values.forEach(e => {
+              this.user.achievements.push(e.mapValue.fields);
+            });
+            this.user.achievements.forEach(e => {
+              e.desc = e.desc.stringValue;
+              e.title = e.title.stringValue;
+            });
+
+            
+            console.log(res.data);
+          });
+
+          let resume = document.getElementById('resume');   
+          let height = resume.clientHeight/6.5;
+          html2canvas(resume).then(canvas => {
           let pdf = new jsPDF('p', 'mm', 'a4');
           pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 211, height, 'resume', 'SLOW');
           pdf.save('a4.pdf');
+          const blob = pdf.output('blob');
+
+          // uploadFile(blob)
+          //   .then(res => {
+          //     console.log(res);
+          //   });
+
+          function uploadFile(file) {
+            return new Promise(
+              (resolve, reject) => {
+                const almostUniqueFileName = Date.now().toString();
+                const upload = firebase.storage().ref()
+                  .child('users/' + email).put(file);
+                upload.on(firebase.storage.TaskEvent.STATE_CHANGED,
+                  () => {
+                    console.log('Uploaded');
+                  },
+                  (error) => {
+                    console.log('Error : ' + error);
+                    reject();
+                  },
+                  () => {
+                    resolve(upload.snapshot.downloadURL);
+                  }
+                );
+              }
+            );
+}
         });
         // let margins = {
         //   top: 70,
@@ -280,6 +327,7 @@
   }
 
   #resume {
+    width: 1480px;
     font-size: 1.3em;
     margin: 20px;
   }

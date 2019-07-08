@@ -42,6 +42,31 @@
           </div>
         </div>
       </div>
+
+
+        <div class="curve card contact-section">
+          <div class="card-body row">
+
+            <div class="card border-0 map col-sm-12 col-md-6">
+              <div class="card-body">
+                <div class="heading">
+                  <h1><span>Where to </span> find us?</h1>
+                </div>                    
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14030.334702711842!2d77.0964582!3d28.4619639!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x86913724f4788bf!2sPRT+Global+Solutions!5e0!3m2!1sen!2sin!4v1562573021767!5m2!1sen!2sin" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>                  </div>
+                <p class="pl-4">820, PRT Gloabl Solutions, <br> Golf Course Road, Sec-42, <br> Gurugram Harayana</p>
+            </div>
+            <div class="card border-0 contact my-auto col-sm-12 col-md-6">
+              <div class="d-block card-body">
+                <div class="heading">
+                  <h1><span>Contact </span> Us</h1>
+                </div>                    
+                <a href="mailto:prtglobalsolutions@gmail.com">prtglobalsolutions@gmail.com</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       
     </div>
 </template>

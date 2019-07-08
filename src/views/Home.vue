@@ -20,7 +20,18 @@
         <h1 class="who-text text-center"> <span>Job</span> Excellence Course</h1>
         <div class="whoWeAre">
 
-          <div class="video card"></div>
+          <div class="video card row">
+            <div class="text col-md-12 col-lg-6">
+              <h2>A STEP BY STEP ONLINE TRAINING COURSE</h2>
+              <br>
+              <p style="font-size: 2em">For Complete</p>
+              <h1>Personality Transformation</h1>
+              <button class="btn btn-primary">Buy Now</button>
+            </div>
+            <div class="course h-100 col-md-12 col-lg-6">
+              <img src="../assets/course-book.png" alt="" class="h-100">
+            </div>
+          </div>
 
         </div>
 
@@ -129,24 +140,26 @@
           <!-- <p class="fact col-md-6 mx-auto text-center text-muted">According to a study/research, it is found that over 
             65% of the candidates don’t get an interview call because of how their resume is built.</p> -->
             
-        <div class="row justify-content-center pt-5">
-          <div class="col-md-4 resume-img">
-            <img src="../assets/resume.png" alt="" class="h-100">
-          </div>
+        <div class="card-body">
+          <div class="row justify-content-center pt-5">
+            <div class="col-md-4 resume-img">
+              <img src="../assets/resume.png" alt="" class="h-100">
+            </div>
 
-          <div class="col-md-5">
-              <div class="heading">
-                <h1><span>Building</span> <br>your resume</h1>
-                <p class="text-muted text-sm">We create a professional looking resume just from the basic information 
-                  you provide to us.</p>
-              </div>
-              <ul class="points">
-                <li>Fill the form to share us your basic information.</li>
-                <li>Sit back and relax, our team will build the resume for you and email you within 24 hrs.</li>
-              </ul>
+            <div class="col-md-5 p-4">
+                <div class="heading">
+                  <h1><span>Building</span> <br>your resume</h1>
+                  <p class="text-muted text-sm">We create a professional looking resume just from the basic information 
+                    you provide to us.</p>
+                </div>
+                <ul class="points">
+                  <li>Fill the form to share us your basic information.</li>
+                  <li>Sit back and relax, our team will build the resume for you and email you within 24 hrs.</li>
+                </ul>
 
-              <p class="text-muted mt-5">Your future resume:</p>
-              <button class="btn btn-info">View a template</button>
+                <!-- <p class="text-muted mt-5">Your future resume:</p>
+                <button class="btn btn-info">View a template</button> -->
+            </div>
           </div>
         </div>
       </div>
@@ -156,31 +169,50 @@
         <!-- <p class="fact col-md-6 mx-auto text-center text-muted">Over 70% of the candidates are rejected 
           within the initial five seconds of the interview because they lack the right attitude and 
           personality to impress the recruiter/interviewee.</p> -->
-        
-        <div class="row justify-content-center pt-5">
-          <div class="col-md-5">
-              <div class="heading">
-                <h1><span>Personality Development </span> <br>course to shape your future</h1>
-                <p class="text-muted text-sm">We give you the best personality development course
-                  which will help you get closer to your dream job.</p>              
-              </div>
-              <ul class="points">
-                <li>Unnecessary information</li>
-                <li>Some more unnecessary information</li>
-                <li>Making no sense whatsoever</li>
-              </ul>
+        <div class="card-body">
+          <div class="row justify-content-center pt-5">
+            <div class="col-md-5">
+                <div class="heading">
+                  <h1><span>Personality Development </span> <br>course to shape your future</h1>
+                  <p class="text-muted text-sm">We give you the best personality development course
+                    which will help you get closer to your dream job.</p>              
+                </div>
+                <ul class="points">
+                  <li>Unnecessary information</li>
+                  <li>Some more unnecessary information</li>
+                  <li>Making no sense whatsoever</li>
+                </ul>
 
-          </div>
+            </div>
 
-          <div class="col-md-3">
-            <img src="../assets/pd.png" alt="" class="resume-img">
+            <div class="col-md-3">
+              <img src="../assets/pd.png" alt="" class="resume-img">
+            </div>
           </div>
-      
-      
         </div>
+
       </div>
 
+      <div class="card curve">
+        <div class="card-body">
+            <!-- <div class="offer-section border">
+              
+              <div class="course-book">
+                <img src="../assets/course-book.png" alt="" class="w-100 h-100">
+              </div>
+              <div class="offer card">
+                <div class="card-header">
+                  <h3 class="card-title">Limited period offer</h3>
+                </div>
+                <div class="card-body text-center">
+                  <h3>Discount <br> 80% off</h3>
+                </div>
+              </div>
 
+            </div> -->
+
+        </div>
+      </div>
 
   </div>
 </template>
@@ -225,6 +257,10 @@
 
 <style>
   @import "../css/styles-landing.css";
+
+  .card.curve > .card-body {
+    padding-top: 150px;
+  }
   
   .jumbotron.main {
     position: relative;
@@ -240,7 +276,7 @@
     background: linear-gradient(0deg, rgba(1, 22, 39, 0.5), rgba(1, 22, 39, 1)), url('../assets/loggedIn.jpg');
   } */
   .jumbo-text {
-    padding-top: 8em;
+    padding-top: 6em;
   }
 
   /* Who we are */
@@ -251,16 +287,30 @@
       color: var(--primary);
   }
   .video {
-      height: 680px;
+      height: 550px;
       width: 80%;
       margin: 30px auto;
       border-radius: 10px;
       background-color: black;
-      background-image: url('../assets/course.jpg');
-      background-size: cover;
       box-shadow: 0px -2px 20px rgb(218, 218, 218);
       z-index: 2;
   }
+  .video > .text {
+    padding: 3em;
+  }
+  .video > .text > button {
+    margin-top: 5em;
+  }
+
+  /* .video > .text > h1::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 5em;
+    height: 8px;
+    background-color: var(--secondary);
+  } */
 
   /* Numbers */
   .numbers {
@@ -305,13 +355,49 @@
       animation: fade-in-up 0.6s ease-out forwards;
   }
   .points {
-      font-size: 1.1em;
-      padding: 10px 0;
-      padding-left: 1em;
-      list-style-type: square;
+    font-size: 1.1em;
+    padding: 10px 0;
+    padding-left: 1em;
+    list-style-type: square;
   }
   .points > li {
     margin-top: 10px;
+  }
+
+  /* Course book section */
+  .course-book {
+    width: 300px;
+    height: fit-content;
+    padding-top: 2em;
+  }
+  .offer {
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    padding-top: 20px;
+    margin-left: -20px;
+    border-radius: 5px;
+    color: white;
+    background: linear-gradient(45deg, rgba(1,22,39,1) 0%, rgba(0,79,141,1) 100%);
+  }
+  .offer > .card-header {
+    margin-left: -2em;
+    width: 100%;
+    padding: 20px 30px;
+    color: white;
+    background-color: red;
+    box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.30);
+  }
+
+  .contact.card {
+    border-radius: 0;
+    color: white;
+  }
+  .contact.card > .card-body > h2 {
+    background-color: var(--dark);
+    padding: 20px;
+    margin-left: -20px;
+    color: rgba(255, 255, 255, 0.8);
   }
 
   /* Features */

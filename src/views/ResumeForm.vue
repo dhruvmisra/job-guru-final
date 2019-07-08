@@ -283,9 +283,12 @@
 
     methods: {
       submit() {
-        this.user.userId = Date.now();
         console.log(this.user);
-        firebase.database().ref('users/' + this.user.userId).set(this.user);
+
+        axios.post('http://192.168.0.137:3000/v1/saveUserData', this.user)
+          .then(res => {
+            console.log(res);
+          });
       },
 
       addSkill() {
