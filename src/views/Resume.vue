@@ -193,7 +193,7 @@
         //   this.fillAbout();
         // })  
 
-        await axios('http://192.168.0.116:3000/v1/getUserData/' + this.id)
+        await axios('https://floating-reef-97336.herokuapp.com/v1/getUserData/' + this.id)
           .then(res => {
             console.log(res.data);
             this.user = res.data;
@@ -264,7 +264,7 @@
         const req = {
           userId: this.email
         }
-        axios.post('http://192.168.0.116:3000/v1/sendEmail/', req)
+        axios.post('https://floating-reef-97336.herokuapp.com/v1/sendEmail/', req)
           .then(res => {
             console.log(res);
           });

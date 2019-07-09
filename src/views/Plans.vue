@@ -13,11 +13,11 @@
       <div class="card curve course">
         <div class="row justify-content-center">
 
-          <div class="image col-md-12 col-lg-6 border">
-
+          <div class="image col-md-12 col-lg-6">
+            <img src="../assets/prt.jpg" alt="">
           </div>
 
-          <div class="card package standard mx-auto">
+          <div class="card package standard mx-auto my-auto">
             <div class="card-body">
               <h2 class="price"> <del>₹9,999</del> ₹1,999</h2>
               <ul class="package-info align-middle pb-3 pt-2">
@@ -134,14 +134,6 @@
     data() {
       return {
         user: null,
-        payObj: {
-          txnid: 124,
-          amount: 1,
-          pinfo: 'P01',
-          fname: 'tester',
-          email: '',
-          mobile: 9999999999
-        }
       }
     },
     mounted() {
@@ -159,8 +151,8 @@
             phone: '9999999999',
             lastname: 'abc',
             firstname: 'def',
-            surl: 'http://192.168.0.116:3000/payu/success',
-            furl: 'http://192.168.0.116:3000/payu/fail'
+            surl: 'https://floating-reef-97336.herokuapp.com/payu/success',
+            furl: 'https://floating-reef-97336.herokuapp.com/payu/fail'
           },
           userData: {
             userId: 'cuikyb2nnIcgxmqVOf5QFETWuno2'
@@ -168,7 +160,7 @@
         }
 
         console.log(JSON.stringify(req));
-        axios.post('http://192.168.0.116:3000/v1/makePayment', req)
+        axios.post('https://floating-reef-97336.herokuapp.com/v1/makePayment', req)
           .then(res => {
             console.log(res);
             window.open(res.data,'_blank');
@@ -187,9 +179,8 @@
   }
   
   .curve.course > .row {
-    margin-top: 10em;
+    margin-top: 6em;
   }
-
   .about-course {
     padding-top: 8em;
     padding-bottom: 2em;
@@ -201,6 +192,13 @@
   .card-img-top {
     width: 200px;
     height: 200px;
+  }
+
+  @media (max-width: 1024px) {
+    .package.standard {
+      margin: 50px !important;
+    }
+
   }
 
 </style>

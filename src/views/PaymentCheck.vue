@@ -22,7 +22,7 @@ export default {
         }
     },
     mounted() {
-        axios.get('http://192.168.0.116:3000/v1/getUserData/' + firebase.auth().currentUser.uid)
+        axios.get('https://floating-reef-97336.herokuapp.com/v1/getUserData/' + firebase.auth().currentUser.uid)
             .then(res => {
                 console.log(res.data);
                 this.payment = res.data.payment;

@@ -70,7 +70,7 @@
             user => {
               this.$store.dispatch('setUser');
               //this.$router.go({path: this.$router.path});
-              this.$router.push('/plans');
+              this.$router.push('/');
               this.loading = false;
             },
             err => {

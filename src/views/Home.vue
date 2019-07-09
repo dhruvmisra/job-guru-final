@@ -26,7 +26,7 @@
         <div class="container text-center jumbo-text" v-else>
           <h1 class="text-white">Having talent and still not getting suitable jobs?</h1>
           <p class="text-muted">So here is JobGuru for you to get your dream jobs by hand-crafting your resume.</p>
-          <button @click="buyNow" class="btn btn-primary btn-lg mb-5">Buy Now</button>
+          <router-link to="/signup" tag="button" class="btn btn-primary btn-lg mb-5">Buy Now</router-link>
         </div>
 
         <!-- Who are we -->
@@ -87,9 +87,8 @@
         <h4 class="text-center">Only limited registrations available</h4>
         <a class="btn sign-btn" 
             style="width: fit-content; margin: 15px auto;" 
-            href="#" 
+            href="/signup" 
             role="button">Buy Now</a>
-        <!-- <router-link to="/signup" tag="btn sign-btn" style="width: fit-content; margin: 15px auto;">Buy Now</router-link> -->
       
       </div>
 
