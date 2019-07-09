@@ -279,13 +279,15 @@
             this.skills = res.data.skills;
           });
       },2000);
+      console.log(firebase.auth().currentUser);
     },
 
     methods: {
       submit() {
         console.log(this.user);
+        this.user.userId = firebase.auth().currentUser.uid;
 
-        axios.post('http://192.168.0.137:3000/v1/saveUserData', this.user)
+        axios.post('http://192.168.0.116:3000/v1/saveUserData', this.user)
           .then(res => {
             console.log(res);
           });

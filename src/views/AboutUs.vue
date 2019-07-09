@@ -45,25 +45,32 @@
 
 
         <div class="curve card contact-section">
-          <div class="card-body row">
+          <div class="card-body container">
 
-            <div class="card border-0 map col-sm-12 col-md-6">
+            <div class="card border-0 bg-transparent col-sm-12">
               <div class="card-body">
-                <div class="heading">
+                <div class="heading text-center">
                   <h1><span>Where to </span> find us?</h1>
-                </div>                    
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14030.334702711842!2d77.0964582!3d28.4619639!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x86913724f4788bf!2sPRT+Global+Solutions!5e0!3m2!1sen!2sin!4v1562573021767!5m2!1sen!2sin" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>                  </div>
-                <p class="pl-4">820, PRT Gloabl Solutions, <br> Golf Course Road, Sec-42, <br> Gurugram Harayana</p>
-            </div>
-            <div class="card border-0 contact my-auto col-sm-12 col-md-6">
-              <div class="d-block card-body">
-                <div class="heading">
-                  <h1><span>Contact </span> Us</h1>
-                </div>                    
-                <a href="mailto:prtglobalsolutions@gmail.com">prtglobalsolutions@gmail.com</a>
-              </div>
+                </div>       
+                <div class="row justify-content-center"> 
+                  <div class="py-3 map" style="width: 70%">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14030.334702711842!2d77.0964582!3d28.4619639!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x86913724f4788bf!2sPRT+Global+Solutions!5e0!3m2!1sen!2sin!4v1562573021767!5m2!1sen!2sin" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>                  </div>
+                  </div>                 
+                  <div class="text-center">820, PRT Gloabl Solutions, <br> Golf Course Road, Sec-42, <br> Gurugram Harayana</div>
+                </div>             
             </div>
 
+          </div>
+        </div>
+
+        <div class="curve card">
+          <div class="card border-0 contact my-auto col-sm-12">
+            <div class="d-block card-body">
+              <div class="heading">
+                <h1><span>Contact </span> Us</h1>
+              </div>                    
+              <a href="mailto:prtglobalsolutions@gmail.com">prtglobalsolutions@gmail.com</a>
+            </div>
           </div>
         </div>
 
@@ -147,5 +154,20 @@
       color: white;
       padding-top: 40px;
       padding-bottom: 60px;
+  }
+
+  .curve.card.contact-section {
+    margin-top: 15em;
+  }
+  .contact.card {
+    padding-top: 8em;
+    border-radius: 0;
+    text-align: center;
+  }
+  .contact.card > .card-body > h2 {
+    background-color: var(--dark);
+    padding: 20px;
+    margin-left: -20px;
+    color: rgba(255, 255, 255, 0.8);
   }
 </style>

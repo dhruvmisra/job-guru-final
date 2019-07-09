@@ -95,7 +95,7 @@
 
 <script>
   import firebase from '../firebase';
-  import axios from 'axios'
+  import axios from 'axios';
   import jsPDF from 'jspdf';
   import html2canvas from 'html2canvas';
   import map from '../skills-map';
@@ -104,7 +104,8 @@
     data() {
       return {
         user: {
-          userId: 1,
+          id: '',
+          email: '',
           firstName: 'First',
           lastName: 'Last',
           email: 'test@testing.com',
@@ -192,59 +193,27 @@
         //   this.fillAbout();
         // })  
 
-        const email = 'dhruvmisra@live.com';
+        await axios('http://192.168.0.116:3000/v1/getUserData/' + this.id)
+          .then(res => {
+            console.log(res.data);
+            this.user = res.data;
+          });
 
-        // await axios('http://192.168.0.137:3000/v1/getUserData/' + email)
-        //   .then(res => {
-        //     this.user.achievements = [];
-        //     res.data.achievements.arrayValue.values.forEach(e => {
-        //       this.user.achievements.push(e.mapValue.fields);
-        //     });
-        //     this.user.achievements.forEach(e => {
-        //       e.desc = e.desc.stringValue;
-        //       e.title = e.title.stringValue;
-        //     });
+        let resume = document.getElementById('resume');   
+        let height = resume.clientHeight/7.0142;
+        resume.classList.remove('hide');
+        html2canvas(resume).then(canvas => {
+          let pdf = new jsPDF('p', 'mm', 'a4');
+          pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 211, height, 'resume', 'SLOW');
+          pdf.save('Resume.pdf');
+          const blob = pdf.output('blob');
 
-            
-        //     console.log(res.data);
-        //   });
+          this.uploadFile(blob)
+            .then(res => {
+              console.log(res);
+              this.sendEmail();
+            });
 
-          let resume = document.getElementById('resume');   
-          let height = resume.clientHeight/6.5;
-          resume.classList.remove('hide');
-          html2canvas(resume).then(canvas => {
-            let pdf = new jsPDF('p', 'mm', 'a4');
-            console.log(canvas.toDataURL('image/png'));
-            pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 211, height, 'resume', 'SLOW');
-            pdf.save('a4.pdf');
-            const blob = pdf.output('blob');
-
-            // uploadFile(blob)
-            //   .then(res => {
-            //     console.log(res);
-            //   });
-
-            function uploadFile(file) {
-              return new Promise(
-                (resolve, reject) => {
-                  const almostUniqueFileName = Date.now().toString();
-                  const upload = firebase.storage().ref()
-                    .child('users/' + email).put(file);
-                  upload.on(firebase.storage.TaskEvent.STATE_CHANGED,
-                    () => {
-                      console.log('Uploaded');
-                    },
-                    (error) => {
-                      console.log('Error : ' + error);
-                      reject();
-                    },
-                    () => {
-                      resolve(upload.snapshot.downloadURL);
-                    }
-                  );
-                }
-              );
-            }
         });
         // let margins = {
         //   top: 70,
@@ -252,7 +221,6 @@
         //   left: 30,
         //   width: 550
         // };
-
         // let pdf = new jsPDF('p', 'pt', 'a4');
         // pdf.setFontSize(18);
         // pdf.fromHTML(document.getElementById('resume'), 
@@ -262,15 +230,44 @@
         //     // y coord
         //     width: margins.width// max width of content on PDF
         //   },()=> {
-
         //   }, 
         //   margins);
-          
         // let iframe = document.createElement('iframe');
         // iframe.setAttribute('style','position:absolute;right:0; top:0; bottom:0; height:100%; width:650px; padding:20px;');
         // document.body.appendChild(iframe);
-        
+  
         // iframe.src = pdf.output('datauristring');
+      },
+    uploadFile(file) {
+        return new Promise(
+          (resolve, reject) => {
+            const upload = firebase.storage().ref()
+              .child('users/' + this.email).put(file);
+            upload.on(firebase.storage.TaskEvent.STATE_CHANGED,
+              () => {
+                console.log('Uploaded');
+              },
+              (error) => {
+                console.log('Error: ' + error);
+                reject();
+              },
+              () => {
+                // resolve(upload.snapshot.downloadURL);
+                resolve();
+              }
+            );
+          }
+        );
+      },
+
+      sendEmail() {
+        const req = {
+          userId: this.email
+        }
+        axios.post('http://192.168.0.116:3000/v1/sendEmail/', req)
+          .then(res => {
+            console.log(res);
+          });
       },
 
       checkPresent() {
@@ -295,6 +292,15 @@
     },
     mounted() {
       this.checkPresent();
+      let resumeWidth = document.getElementById('resume').offsetWidth;
+      let resumeHeight = document.getElementById('resume').offsetHeight;
+      let screenWidth = document.body.clientWidth;
+      let screenHeight = document.body.clientHeight;
+      console.log('Resume: ', resumeWidth, resumeHeight);
+      console.log('Screen: ', screenWidth, screenHeight);
+
+      this.id = firebase.auth().currentUser.uid;
+      this.email = firebase.auth().currentUser.email;
     }
   };
 </script>
@@ -332,6 +338,7 @@
     position: absolute;
     /* left: -1500px; */
     width: 1480px;
+    height: 2090px;
     font-size: 1.5em;
     margin: 20px;
   }
@@ -358,6 +365,7 @@
   
   .resume-side {
     width: 32%;
+    height: 2000px;
     background-color: rgb(241, 241, 241);
   }
   .resume-main {

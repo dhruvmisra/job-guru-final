@@ -20,16 +20,18 @@
         <h1 class="who-text text-center"> <span>Job</span> Excellence Course</h1>
         <div class="whoWeAre">
 
-          <div class="video card row">
-            <div class="text col-md-12 col-lg-6">
-              <h2>A STEP BY STEP ONLINE TRAINING COURSE</h2>
-              <br>
-              <p style="font-size: 2em">For Complete</p>
-              <h1>Personality Transformation</h1>
-              <button class="btn btn-primary">Buy Now</button>
-            </div>
-            <div class="course h-100 col-md-12 col-lg-6">
-              <img src="../assets/course-book.png" alt="" class="h-100">
+          <div class="video card">
+            <div class="row">
+              <div class="text col-md-12 col-lg-6">
+                <h2>A STEP BY STEP ONLINE TRAINING COURSE</h2>
+                <br>
+                <p style="font-size: 2em">For Complete</p>
+                <h1>Personality Transformation</h1>
+                <button class="btn btn-primary">Buy Now</button>
+              </div>
+              <div class="course col-md-12 col-lg-6 ml-auto">
+                <img src="../assets/course-book.png" alt="" class="">
+              </div>
             </div>
           </div>
 
@@ -287,18 +289,22 @@
       color: var(--primary);
   }
   .video {
-      height: 550px;
-      width: 80%;
-      margin: 30px auto;
-      border-radius: 10px;
-      background-color: black;
-      box-shadow: 0px -2px 20px rgb(218, 218, 218);
-      z-index: 2;
+    height: fit-content;
+    width: 80%;
+    margin: 30px auto;
+    border-radius: 10px;
+    background-color: black;
+    box-shadow: 0px -2px 20px rgb(218, 218, 218);
+    z-index: 2;
   }
-  .video > .text {
+  .course > img {
+    width: 300px;
+    margin: 0 20%;
+  }
+  .text {
     padding: 3em;
   }
-  .video > .text > button {
+  .text > button {
     margin-top: 5em;
   }
 
@@ -387,17 +393,6 @@
     color: white;
     background-color: red;
     box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.30);
-  }
-
-  .contact.card {
-    border-radius: 0;
-    color: white;
-  }
-  .contact.card > .card-body > h2 {
-    background-color: var(--dark);
-    padding: 20px;
-    margin-left: -20px;
-    color: rgba(255, 255, 255, 0.8);
   }
 
   /* Features */
@@ -510,6 +505,12 @@
     background-color: white;
     padding-top: 10em;
     padding-bottom: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .course > img {
+      width: 80%;
+    }
   }
 
 </style>
