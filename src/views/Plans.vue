@@ -128,7 +128,7 @@
 </template>
 
 <script>
-  import axios from 'axios';
+  import axios from '../axios';
 
   export default {
     data() {
@@ -144,9 +144,9 @@
       buyNow() {
         let req = {
           payment: {
-            productinfo: 'Course',
+            productinfo: 'Job Excellence Course',
             txnid: '129387',
-            amount: '1',
+            amount: '2000',
             email: 'test@test.com',
             phone: '9999999999',
             lastname: 'abc',
@@ -160,7 +160,7 @@
         }
 
         console.log(JSON.stringify(req));
-        axios.post('https://floating-reef-97336.herokuapp.com/v1/makePayment', req)
+        axios.post('makePayment', req)
           .then(res => {
             console.log(res);
             window.open(res.data,'_blank');

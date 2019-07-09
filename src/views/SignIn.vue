@@ -30,7 +30,7 @@
                   v-model="password" 
                   placeholder="Password">
         </div>
-        <button @click.prevent="signin" type="button" class="btn btn-primary">
+        <button @click.prevent="signin" :disabled="$v.$invalid" type="button" class="btn btn-primary">
           <div class="spinner-border mx-2 my-0" v-if="loading" role="status">
             <span class="sr-only">Loading...</span>
           </div>

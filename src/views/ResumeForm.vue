@@ -248,7 +248,7 @@
 </template>
 
 <script>  
-  import axios from 'axios'; 
+  import axios from '../axios'; 
   import firebase from '../firebase';
   import {required, email, numeric, maxLength, minLength, sameAs} from 'vuelidate/lib/validators';
 
@@ -303,7 +303,7 @@
 
     created() {
       setTimeout(() => {
-        axios.get('https://floating-reef-97336.herokuapp.com/v1/resume-form')
+        axios.get('resume-form')
           .then(res => {
             this.professionalSkills = res.data.professionalSkills;
             this.skills = res.data.skills;
@@ -317,7 +317,7 @@
         console.log(this.user);
         this.user.userId = firebase.auth().currentUser.uid;
 
-        axios.post('https://floating-reef-97336.herokuapp.com/v1/saveUserData', this.user)
+        axios.post('saveUserData', this.user)
           .then(res => {
             console.log(res);
             this.$router.push('/resume');

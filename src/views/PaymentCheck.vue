@@ -12,7 +12,7 @@
 
 <script>
 import firebase from '../firebase';
-import axios from 'axios';
+import axios from '../axios';
 
 export default {
     data() {
@@ -22,7 +22,7 @@ export default {
         }
     },
     mounted() {
-        axios.get('https://floating-reef-97336.herokuapp.com/v1/getUserData/' + firebase.auth().currentUser.uid)
+        axios.get('getUserData/' + firebase.auth().currentUser.uid)
             .then(res => {
                 console.log(res.data);
                 this.payment = res.data.payment;

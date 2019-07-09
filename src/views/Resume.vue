@@ -95,7 +95,7 @@
 
 <script>
   import firebase from '../firebase';
-  import axios from 'axios';
+  import axios from '../axios';
   import jsPDF from 'jspdf';
   import html2canvas from 'html2canvas';
   import map from '../skills-map';
@@ -193,7 +193,7 @@
         //   this.fillAbout();
         // })  
 
-        await axios('https://floating-reef-97336.herokuapp.com/v1/getUserData/' + this.id)
+        await axios('getUserData/' + this.id)
           .then(res => {
             console.log(res.data);
             this.user = res.data;
@@ -215,30 +215,8 @@
             });
 
         });
-        // let margins = {
-        //   top: 70,
-        //   bottom: 40,
-        //   left: 30,
-        //   width: 550
-        // };
-        // let pdf = new jsPDF('p', 'pt', 'a4');
-        // pdf.setFontSize(18);
-        // pdf.fromHTML(document.getElementById('resume'), 
-        //   margins.left, // x coord
-        //   margins.top,
-        //   {
-        //     // y coord
-        //     width: margins.width// max width of content on PDF
-        //   },()=> {
-        //   }, 
-        //   margins);
-        // let iframe = document.createElement('iframe');
-        // iframe.setAttribute('style','position:absolute;right:0; top:0; bottom:0; height:100%; width:650px; padding:20px;');
-        // document.body.appendChild(iframe);
-  
-        // iframe.src = pdf.output('datauristring');
       },
-    uploadFile(file) {
+      uploadFile(file) {
         return new Promise(
           (resolve, reject) => {
             const upload = firebase.storage().ref()
@@ -254,17 +232,15 @@
               () => {
                 // resolve(upload.snapshot.downloadURL);
                 resolve();
-              }
-            );
-          }
-        );
+              });
+          });
       },
 
       sendEmail() {
         const req = {
           userId: this.email
         }
-        axios.post('https://floating-reef-97336.herokuapp.com/v1/sendEmail/', req)
+        axios.post('sendEmail/', req)
           .then(res => {
             console.log(res);
           });
