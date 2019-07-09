@@ -243,28 +243,15 @@
       }
     },
     methods: {
-      buyNow() {  
-        let order = {
-          ORDER_ID: 'ABC134',
-          CUST_ID: 'testUser1',
-          TXN_AMOUNT: '1',
-        }
-        axios.post('http://localhost:3000/testtxn', order)
-          .then(res => {
-            console.log(res);
-            let pay = window.open("", "_blank");
-            pay.document.write(res.data);
-          })
-      }
 
     },
     mounted() {
-      if(this.$store.getters.getUser) {
+      if(this.$store.getters.user) {
         this.isLoggedIn = true;
-        let jumbo = document.getElementsByClassName('jumbotron', 'main');
-        jumbo = jumbo[0];
-        jumbo.classList.remove('default');
-        jumbo.classList.add('loggedIn');
+        // let jumbo = document.getElementsByClassName('jumbotron', 'main');
+        // jumbo = jumbo[0];
+        // jumbo.classList.remove('default');
+        // jumbo.classList.add('loggedIn');
       }
     }
   }

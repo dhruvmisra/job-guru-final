@@ -37,9 +37,9 @@
       }
     },
     created() {
-      if(this.$store.getters.getUser) {
+      if(this.$store.getters.user) {
         this.isLoggedIn = true;
-        this.currentUser = this.$store.getters.getUser;
+        this.currentUser = this.$store.getters.user;
       }
     },
     methods: {

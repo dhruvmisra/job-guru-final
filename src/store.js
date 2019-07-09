@@ -11,17 +11,24 @@ export default new Vuex.Store({
     hasPaid: false
   },
   getters: {
-    getUser(state) {
+    user(state) {
       return state.user;
+    },
+    hasPaid(state) {
+      return state.hasPaid;
     }
   },
   mutations: {
     set_user(state, user) {
       state.user = user;
-      console.log(state.user);
+    },
+    set_details(state, details) {
+      state.user.details = details;
+      console.log(state.user.details);
     },
     clear_user(state) {
       state.user = null;
+      state.hasPaid = false;
     },
     has_paid_true(state) {
       state.hasPaid = true;
@@ -30,10 +37,15 @@ export default new Vuex.Store({
   actions: {
     setUser({commit, dispatch}) {
       if(firebase.auth().currentUser) {
-        axios.get('getUserData' + firebase.auth().currentUser.uid)
+        commit('set_user', firebase.auth().currentUser);
+        axios.get('getUserData/' + firebase.auth().currentUser.uid)
           .then(res => {
-            commit('set_user', res.data);
-            dispatch('checkHasPaid');
+            if(res.data) {
+              commit('set_details', res.data);
+              dispatch('checkHasPaid');
+            } else {
+              commit('set_details', null);
+            }
           });
       }
     },
@@ -41,7 +53,7 @@ export default new Vuex.Store({
       commit('clear_user');
     },
     checkHasPaid({commit, state}) {
-      if(state.user.payment != null) {
+      if(state.user.details.payment != null) {
         commit('has_paid_true');
       }
     }

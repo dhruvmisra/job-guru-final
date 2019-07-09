@@ -70,6 +70,7 @@
             user => {
               this.$store.dispatch('setUser');
               //this.$router.go({path: this.$router.path});
+              //console.log(this.$store.getters.getUser);
               this.$router.push('/');
               this.loading = false;
             },

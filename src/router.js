@@ -4,13 +4,14 @@ import Home from './views/Home.vue'
 import WhyUs from './views/WhyUs.vue'
 import CaseStudies from './views/CaseStudies.vue'
 import AboutUs from './views/AboutUs.vue'
-import Plans from './views/Plans.vue'
+import Plan from './views/Plan.vue'
 import ResumeForm from './views/ResumeForm.vue'
 import SignUp from './views/SignUp.vue'
 import SignIn from './views/SignIn.vue'
 import Resume from './views/Resume.vue'
 import PaymentCheck from './views/PaymentCheck.vue'
 
+import store from './store';
 import firebase from './firebase';
 
 Vue.use(Router)
@@ -25,11 +26,11 @@ let router = new Router({
       name: 'home',
       component: Home
     },
-    {
-      path: '/why-us',
-      name: 'why-us',
-      component: WhyUs
-    },
+    // {
+    //   path: '/why-us',
+    //   name: 'why-us',
+    //   component: WhyUs
+    // },
     {
       path: '/case-studies',
       name: 'case-studies',
@@ -65,9 +66,9 @@ let router = new Router({
       }
     },
     {
-      path: '/plans',
-      name: 'plans',
-      component: Plans,
+      path: '/plan',
+      name: 'plan',
+      component: Plan,
       meta: {
         requiresAuth: true
       }
@@ -77,7 +78,8 @@ let router = new Router({
       name: 'resume-form',
       component: ResumeForm,
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        requiresPayment: true
       }
     },
     {
@@ -85,7 +87,8 @@ let router = new Router({
       name: 'resume',
       component: Resume,
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        requiresPayment: true
       }
     },
   ]
@@ -96,15 +99,27 @@ router.beforeEach((to, from, next) => {
   //Chekc for requiresAuth
   if(to.matched.some(record => record.meta.requiresAuth)) {
     //Check !loggedIn
-    if(!firebase.auth().currentUser) {
+    if(!store.getters.user) {
       //Go to Signin page
       next({
         path: '/signin',
         query: {
           redirect: to.fullPath
         }
-      })
+      });
     } else {
+      //Check for requiresPayment
+      if(to.matched.some(record => record.meta.requiresPayment)) {
+        if(!store.getters.hasPaid) {
+          //Go to payment page
+          next({
+            path: '/plan',
+            query: {
+              redirect: to.fullPath
+            }
+          });
+        }
+      }
       //Proceed
       next();
     }

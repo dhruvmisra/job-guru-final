@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button class="btn btn-secondary" @click="generate">Generate</button>
+    <button class="d-block btn btn-secondary mx-auto my-5" @click="generate">Generate</button>
     <div id="resume">
       <div class="">
 
