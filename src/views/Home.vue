@@ -8,9 +8,22 @@
             <router-link to="/resume-form" tag="button" class="btn btn-primary">Create your resume</router-link>
             <router-link to="/resume" tag="button" class="btn btn-info">View your resume</router-link>
           </div>
+
+          <div class="container">
+            <div class="card steps col-md-12 col-lg-6 mx-auto bg-transparent border">
+              <div class="card-body">
+                <h2 class="text-center">Steps</h2>
+                <ol>
+                  <li> <span>Step</span> </li>
+                  <li> <span>Step</span> </li>
+                  <li> <span>Step</span> </li>
+                </ol>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="container text-center jumbo-text">
+        <div class="container text-center jumbo-text" v-else>
           <h1 class="text-white">Having talent and still not getting suitable jobs?</h1>
           <p class="text-muted">So here is JobGuru for you to get your dream jobs by hand-crafting your resume.</p>
           <button @click="buyNow" class="btn btn-primary btn-lg mb-5">Buy Now</button>
@@ -27,7 +40,7 @@
                 <br>
                 <p style="font-size: 2em">For Complete</p>
                 <h1>Personality Transformation</h1>
-                <button class="btn btn-primary">Buy Now</button>
+                <router-link to="/signup" tag="button" class="btn btn-primary">Buy Now</router-link>
               </div>
               <div class="course col-md-12 col-lg-6 ml-auto">
                 <img src="../assets/course-book.png" alt="" class="">
@@ -49,22 +62,22 @@
             
             <div class="card number-card">
               <div class="card-body text-center">
-                <p class="number">500+</p>
+                <p class="number">5,000+</p>
                 <p class="number-text">Courses sold</p>
               </div>
             </div>
 
             <div class="card number-card">
               <div class="card-body text-center">
-                <p class="number">340</p>
+                <p class="number">1,700</p>
                 <p>Users currently viewing</p>
               </div>
             </div>
 
             <div class="card number-card">
               <div class="card-body text-center">
-                <p class="number">540</p>
-                <p>Users currently viewing</p>
+                <p class="number">1,000</p>
+                <p>Candidates helped</p>
               </div>
             </div>
 
@@ -72,10 +85,11 @@
         </div>
 
         <h4 class="text-center">Only limited registrations available</h4>
-        <a class="btn sign-btn sign-btn" 
+        <a class="btn sign-btn" 
             style="width: fit-content; margin: 15px auto;" 
             href="#" 
             role="button">Buy Now</a>
+        <!-- <router-link to="/signup" tag="btn sign-btn" style="width: fit-content; margin: 15px auto;">Buy Now</router-link> -->
       
       </div>
 
@@ -176,8 +190,8 @@
             <div class="col-md-5">
                 <div class="heading">
                   <h1><span>Personality Development </span> <br>course to shape your future</h1>
-                  <p class="text-muted text-sm">We give you the best personality development course
-                    which will help you get closer to your dream job.</p>              
+                  <p class="text-muted text-sm">A good personality influences the people around, the charm 
+                    and aura of a refined personality creates an approachable and friendly image.</p>              
                 </div>
                 <ul class="points">
                   <li>Unnecessary information</li>
@@ -277,6 +291,16 @@
   .loggedIn {
     background: linear-gradient(0deg, rgba(1, 22, 39, 0.5), rgba(1, 22, 39, 1)), url('../assets/loggedIn.jpg');
   } */
+  .steps {
+    margin-top: 6em;
+    font-size: 1.5em;
+  }
+  .steps > .card-body > ol {
+    color: var(--primary);
+  }
+  .steps > .card-body > ol > li > span {
+    color: white;
+  }
   .jumbo-text {
     padding-top: 6em;
   }
@@ -402,6 +426,7 @@
   }
   .feature {
     width: 18em;
+    margin: 30px;
     border: none;
     background: transparent;
     text-align: center;
@@ -413,9 +438,10 @@
   .feature:hover > .card-body > .card-title {
     color: var(--primary);
   }
-  .feature-img {
+  .feature-img > img{
     height: 280px;
     width: 280px;
+    border-radius: 20px;
   }
 
   .categories {

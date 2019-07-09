@@ -2,15 +2,18 @@
   <div id="app">
     <app-navbar :key="$route.fullPath"></app-navbar>
     <router-view/>
+    <app-footer></app-footer>
   </div>
 </template>
 
 <script>
   import Navbar from './components/Navbar'; 
+  import Footer from './components/Footer'; 
   
   export default {
     components: {
-      'app-navbar': Navbar
+      'app-navbar': Navbar,
+      'app-footer': Footer
     },
     data() {
       return {

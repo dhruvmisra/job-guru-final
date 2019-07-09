@@ -22,13 +22,24 @@
         </div>
 
         <div class="form-row">
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-6" :class="{invalid: ($v.user.email.$error) && ($v.user.email.$model!='')}">
             <label for="email">Email ID</label>
-            <input type="email" class="form-control" id="email" placeholder="Email" v-model="user.email">
+            <input type="email" 
+                    class="form-control" 
+                    id="email" 
+                    placeholder="Email" 
+                    @blur="$v.user.email.$touch()"
+                    v-model="user.email">
+                    <!-- <p>{{$v}}</p> -->
           </div>
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-6" :class="{invalid: ($v.user.contact.$error) && ($v.user.contact.$model!='')}">
             <label for="contactNo">Contact Number</label>
-            <input type="tel" class="form-control" id="contactNo" placeholder="Number" v-model="user.contact">
+            <input type="tel" 
+                    class="form-control" 
+                    id="contactNo" 
+                    placeholder="Number" 
+                    @blur="$v.user.contact.$touch()"
+                    v-model="user.contact">
           </div>
         </div>
 
@@ -45,7 +56,6 @@
           <div class="form-group col-md-4">
             <label for="state">State</label>
             <select id="state" class="form-control" v-model="user.address.state" placeholder="Choose">
-              <option>Choose...</option>
               <option>New Delhi</option>
             </select>
           </div>
@@ -229,7 +239,7 @@
 
     <div class="row justify-content-center">
       <button type="button" @click="prevStep" v-if="step != 1" class="btn btn-secondary m-2">Previous</button>
-      <button type="button" @click="nextStep" v-if="step != totalSteps" class="btn btn-secondary m-2">Next</button>
+      <button type="button" @click="nextStep" v-if="step != totalSteps" :disabled="$v.$invalid" class="btn btn-secondary m-2">Next</button>
     </div>
 
     <button type="submit" @click="submit" class="d-block btn btn-primary my-5 mx-auto">Generate</button>
@@ -240,7 +250,8 @@
 <script>  
   import axios from 'axios'; 
   import firebase from '../firebase';
-  
+  import {required, email, numeric, maxLength, minLength, sameAs} from 'vuelidate/lib/validators';
+
   export default {
     data() {
       return {
@@ -270,10 +281,29 @@
         }
       }
     },
+    validations: {
+      user: {
+        email: {
+          required,
+          email
+        },
+        contact: {
+          required,
+          numeric,
+          maxLen: maxLength(10),
+          minLen: minLength(10),
+        },
+        address: {
+          zip: {
+            numeric
+          }
+        },
+      }
+    },
 
     created() {
       setTimeout(() => {
-        axios.get('http://localhost:4000/resume-form')
+        axios.get('http://192.168.0.116:3000/v1/resume-form')
           .then(res => {
             this.professionalSkills = res.data.professionalSkills;
             this.skills = res.data.skills;
@@ -414,4 +444,11 @@
     color: white;
     background-color: rgb(0, 196, 0);
   }
+  .invalid small {
+    color: red;
+  }
+  .invalid input {
+    border: 1px solid red;
+  }
+
 </style>

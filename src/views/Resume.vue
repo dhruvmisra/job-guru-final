@@ -336,7 +336,7 @@
 
   #resume {
     position: absolute;
-    /* left: -1500px; */
+    left: -1500px;
     width: 1480px;
     height: 2090px;
     font-size: 1.5em;

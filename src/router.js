@@ -9,6 +9,7 @@ import ResumeForm from './views/ResumeForm.vue'
 import SignUp from './views/SignUp.vue'
 import SignIn from './views/SignIn.vue'
 import Resume from './views/Resume.vue'
+import PaymentCheck from './views/PaymentCheck.vue'
 
 import firebase from './firebase';
 
@@ -52,6 +53,14 @@ let router = new Router({
       component: SignIn,
       meta: {
         requiresGuest: true
+      }
+    },
+    {
+      path: '/payment',
+      name: 'payment',
+      component: PaymentCheck,
+      meta: {
+        requiresAuth: true
       }
     },
     {

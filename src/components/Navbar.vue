@@ -7,7 +7,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ml-auto">
-        <router-link to="/why-us" tag="a" class="nav-item nav-link mx-md-auto">Why Us</router-link>
+        <!-- <router-link to="/why-us" tag="a" class="nav-item nav-link mx-md-auto">Why Us</router-link> -->
         <router-link to="/case-studies" tag="a" class="nav-item nav-link mx-md-auto">Case Studies</router-link>
         <router-link to="/about-us" tag="a" class="nav-item nav-link mx-md-auto">About Us</router-link>
         <router-link to="/signin" v-if="!isLoggedIn" tag="button" class="btn btn-outline-primary mx-2 mx-md-auto">Sign In</router-link>
