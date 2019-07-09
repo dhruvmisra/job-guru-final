@@ -340,7 +340,6 @@
     background-image: url('../assets/bg.png');
     background-size: cover;
     background-position: center;
-    
   }
   .resume-img-section {
     width: 35%;
