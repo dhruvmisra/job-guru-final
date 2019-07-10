@@ -30,7 +30,6 @@
                     placeholder="Email" 
                     @blur="$v.user.email.$touch()"
                     v-model="user.email">
-                    <!-- <p>{{$v}}</p> -->
           </div>
           <div class="form-group col-md-6" :class="{invalid: ($v.user.contact.$error) && ($v.user.contact.$model!='')}">
             <label for="contactNo">Contact Number</label>
@@ -56,7 +55,41 @@
           <div class="form-group col-md-4">
             <label for="state">State</label>
             <select id="state" class="form-control" v-model="user.address.state" placeholder="Choose">
-              <option>New Delhi</option>
+              <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+              <option value="Andhra Pradesh">Andhra Pradesh</option>
+              <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+              <option value="Assam">Assam</option>
+              <option value="Bihar">Bihar</option>
+              <option value="Chandigarh">Chandigarh</option>
+              <option value="Chhattisgarh">Chhattisgarh</option>
+              <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+              <option value="Daman and Diu">Daman and Diu</option>
+              <option value="Delhi">Delhi</option>
+              <option value="Goa">Goa</option>
+              <option value="Gujarat">Gujarat</option>
+              <option value="Haryana">Haryana</option>
+              <option value="Himachal Pradesh">Himachal Pradesh</option>
+              <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+              <option value="Jharkhand">Jharkhand</option>
+              <option value="Karnataka">Karnataka</option>
+              <option value="Kerala">Kerala</option>
+              <option value="Lakshadweep">Lakshadweep</option>
+              <option value="Madhya Pradesh">Madhya Pradesh</option>
+              <option value="Maharashtra">Maharashtra</option>
+              <option value="Manipur">Manipur</option>
+              <option value="Meghalaya">Meghalaya</option>
+              <option value="Mizoram">Mizoram</option>
+              <option value="Nagaland">Nagaland</option>
+              <option value="Orissa">Orissa</option>
+              <option value="Pondicherry">Pondicherry</option>
+              <option value="Punjab">Punjab</option>
+              <option value="Rajasthan">Rajasthan</option>
+              <option value="Sikkim">Sikkim</option>
+              <option value="Tamil Nadu">Tamil Nadu</option>
+              <option value="Tripura">Tripura</option>
+              <option value="Uttaranchal">Uttaranchal</option>
+              <option value="Uttar Pradesh">Uttar Pradesh</option>
+              <option value="West Bengal">West Bengal</option>
             </select>
           </div>
           <div class="form-group col-md-2">
@@ -68,6 +101,10 @@
         <div class="form-row">
           <input type="file" class="w-100" @change="onFileUpload">
         </div>
+        
+        <div class="row justify-content-center">
+          <button type="button" @click="nextStep" v-if="step == 1" :disabled="$v.user.email.$invalid || $v.user.contact.$invalid" class="btn btn-secondary m-2">Next</button>
+        </div>
 
       </section>
 
@@ -76,15 +113,22 @@
         <h4 class="heading">Step 2</h4>
 
         <h4 class="heading">Professional Skills</h4>
-        <p>Choose no more than 5</p>
-        <div class="card block" @click="professionalStateChange" :id="skill" v-for="skill in professionalSkills" :key="skill">
-          <div class="card-body">
-            {{ skill }}
+
+        <div :class="{invalid: ($v.user.professionalSkills.$error) && ($v.user.professionalSkills.$model!='')}">
+          <small>Choose no more than 5 skills</small><br>
+          <div class="card block" @click="professionalStateChange" :id="skill" v-for="skill in professionalSkills" :key="skill">
+            <div class="card-body">
+              {{ skill }}
+            </div>
+          </div>
+          <div class="d-block spinner-border mx-auto my-5 text-info" v-if="professionalSkills == null" role="status">
+            <span class="sr-only">Loading...</span>
           </div>
         </div>
 
-        <div class="d-block spinner-border mx-auto my-5 text-info" v-if="professionalSkills == null" role="status">
-          <span class="sr-only">Loading...</span>
+        <div class="row justify-content-center" v-if="step == 2">
+          <button type="button" @click="prevStep" class="btn btn-secondary m-2">Previous</button>
+          <button type="button" @click="nextStep" :disabled="$v.user.professionalSkills.$invalid" class="btn btn-secondary m-2">Next</button>
         </div>
 
       </section>
@@ -94,7 +138,7 @@
         <h4 class="heading">Step 3</h4>
 
         <h4 class="heading">Eduction</h4>
-        <form v-for="item in user.education" :key="item">
+        <form v-for="(item, index) in user.education" :key="item">
           <div class="form-group">
             <label for="school">School/College</label>
             <input type="text" class="form-control" id="school" v-model="item.schoolName">
@@ -111,13 +155,21 @@
           </div>
 
           <div class="form-row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6" :class="{invalid: ($v.user.education.$each[index].startYear.$error)}">
               <label for="startYear">Start Year</label>
-              <input type="number" class="form-control" id="startYear" v-model="item.startYear">
+              <input type="number" 
+                      class="form-control" 
+                      id="startYear" 
+                      @blur="$v.user.education.$each[index].startYear.$touch()"
+                      v-model="item.startYear">
             </div>
-            <div class="form-group col-md-6" v-show="!item.present">
+            <div class="form-group col-md-6" v-show="!item.present" :class="{invalid: ($v.user.education.$each[index].endYear.$error)}">
               <label for="endYear">End Year</label>
-              <input type="number" class="form-control" id="endYear" v-model="item.endYear">
+              <input type="number" 
+                      class="form-control" 
+                      id="endYear" 
+                      @blur="$v.user.education.$each[key].endYear.$touch()"
+                      v-model="item.endYear">
             </div>
           </div>
           <div class="form-check text-center">
@@ -135,6 +187,12 @@
         </form>
         
         <button type="button" @click="addEducation" class="btn btn-small btn-outline-primary mb-5">Add Education</button>
+
+        <div class="row justify-content-center" v-if="step == 3">
+          <button type="button" @click="prevStep" class="btn btn-secondary m-2">Previous</button>
+          <button type="button" @click="nextStep" :disabled="$v.user.professionalSkills.$invalid" class="btn btn-secondary m-2">Next</button>
+        </div>
+
       </section>
 
       <!-- Experience -->
@@ -237,10 +295,10 @@
 
     </form>
 
-    <div class="row justify-content-center">
+    <!-- <div class="row justify-content-center">
       <button type="button" @click="prevStep" v-if="step != 1" class="btn btn-secondary m-2">Previous</button>
       <button type="button" @click="nextStep" v-if="step != totalSteps" :disabled="$v.$invalid" class="btn btn-secondary m-2">Next</button>
-    </div>
+    </div> -->
 
     <button type="submit" @click="submit" class="d-block btn btn-primary my-5 mx-auto">Generate</button>
 
@@ -298,6 +356,22 @@
             numeric
           }
         },
+        professionalSkills: {
+          maxLen: maxLength(5),
+          minLen: minLength(1),
+        },
+        education: {
+          $each: {
+            startYear: {
+              maxLen: maxLength(4),
+              minLen: minLength(4),
+            },
+            endYear: {
+              maxLen: maxLength(4),
+              minLen: minLength(4),
+            }
+          }
+        }
       }
     },
 
@@ -336,11 +410,14 @@
           schoolName: '',
           degree: '',
           field: '',
-          startYear: 2019,
+          startYear: null,
           present: false,
-          endYear: 0,
+          endYear: null,
           activities: ''
         });
+      },
+      removeEducation(index) {
+
       },
 
       addExperience() {
@@ -409,12 +486,11 @@
         let professional = event.currentTarget;
         if(professional.classList.contains('block-selected')) {
           professional.classList.remove('block-selected');
-          let i = this.professionalSelected.indexOf(professional.id);
-          this.professionalSelected.splice(i, 1);
-
+          let i = this.user.professionalSkills.indexOf(professional.id);
+          this.user.professionalSkills.splice(i, 1);
         } else {
           professional.classList.add('block-selected');
-          this.professionalSelected.push(professional.id);
+          this.user.professionalSkills.push(professional.id);
         }
       },
 

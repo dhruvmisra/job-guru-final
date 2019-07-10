@@ -84,11 +84,13 @@
           </div>
         </div>
 
-        <h4 class="text-center">Only limited registrations available</h4>
-        <a class="btn sign-btn" 
-            style="width: fit-content; margin: 15px auto;" 
-            href="/signup" 
-            role="button">Buy Now</a>
+        <div v-if="!isLoggedIn">
+          <h4 class="text-center">Only limited registrations available</h4>
+          <a class="btn sign-btn" 
+              style="width: fit-content; margin: 15px auto;" 
+              href="/signup" 
+              role="button">Buy Now</a>
+        </div>
       
       </div>
 
@@ -185,7 +187,7 @@
           within the initial five seconds of the interview because they lack the right attitude and 
           personality to impress the recruiter/interviewee.</p> -->
         <div class="card-body">
-          <div class="row justify-content-center pt-5">
+          <div class="row justify-content-around pt-5">
             <div class="col-md-5">
                 <div class="heading">
                   <h1><span>Personality Development </span> <br>course to shape your future</h1>
@@ -193,9 +195,10 @@
                     and aura of a refined personality creates an approachable and friendly image.</p>              
                 </div>
                 <ul class="points">
-                  <li>Unnecessary information</li>
-                  <li>Some more unnecessary information</li>
-                  <li>Making no sense whatsoever</li>
+                  <li>A good personality not only inspires confidence in others of your abilities and achievements, 
+                    but it also gives a boost to your self-confidence. </li>
+                  <li>Your social skill also reflects in your interviews, as the interviewer will keep a close watch 
+                    on how you carry yourself around other people and how you converse with them.</li>
                 </ul>
 
             </div>

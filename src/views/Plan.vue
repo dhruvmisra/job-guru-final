@@ -24,7 +24,12 @@
                 <li>Resume Building</li>
                 <li>Personality Development Course</li>
               </ul>
-              <button @click="buyNow" class="btn buy-btn">Buy Now</button>
+              <button @click="buyNow" class="btn buy-btn">
+                <div class="spinner-border mx-2 my-0" v-if="loading" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                <span v-else>Buy Now</span>
+              </button>
             </div>
           </div>
             
@@ -118,8 +123,12 @@
         </div>
 
         <h4 class="text-center mt-5">Only limited registrations available</h4>
-        <button @click="buyNow" class="btn buy-btn">Buy Now</button>
-
+        <button @click="buyNow" class="btn buy-btn">
+          <div class="spinner-border mx-2 my-0" v-if="loading" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <span v-else>Buy Now</span>
+        </button>
 
 
       </div>
@@ -134,6 +143,7 @@
     data() {
       return {
         user: null,
+        loading: false
       }
     },
     mounted() {
@@ -142,11 +152,12 @@
     },
     methods: {
       buyNow() {
+        this.loading = true;
         let req = {
           payment: {
             productinfo: 'Job Excellence Course',
             txnid: '129387',
-            amount: '2000',
+            amount: '1',
             email: 'test@test.com',
             phone: '9999999999',
             lastname: 'abc',
@@ -162,8 +173,9 @@
         console.log(JSON.stringify(req));
         axios.post('makePayment', req)
           .then(res => {
+            this.loading = false;
             console.log(res);
-            window.open(res.data,'_blank');
+            window.open(res.data, '_blank');
           });
       },
 
