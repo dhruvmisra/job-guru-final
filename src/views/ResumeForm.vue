@@ -13,11 +13,17 @@
                     class="form-control" 
                     id="firstName" 
                     placeholder="First Name"
+                    @blur="$v.user.firstName.$touch()"
                     v-model="user.firstName">
           </div>
           <div class="form-group col-md-6">
             <label for="lastName">Last Name</label>
-            <input type="text" class="form-control" id="lastName" placeholder="Last Name" v-model="user.lastName">
+            <input type="text" 
+                    class="form-control" 
+                    id="lastName" 
+                    placeholder="Last Name" 
+                    @blur="$v.user.lastName.$touch()"
+                    v-model="user.lastName">
           </div>
         </div>
 
@@ -44,7 +50,12 @@
 
         <div class="form-group">
           <label for="Address">Address</label>
-          <input type="text" class="form-control" id="Address" placeholder="Address" v-model="user.address.addressLine">
+          <input type="text" 
+                class="form-control" 
+                id="Address" 
+                placeholder="Address" 
+                @blur="$v.user.address.addressLine.$touch()"
+                v-model="user.address.addressLine">
         </div>
         
         <div class="form-row">
@@ -54,7 +65,11 @@
           </div>
           <div class="form-group col-md-4">
             <label for="state">State</label>
-            <select id="state" class="form-control" v-model="user.address.state" placeholder="Choose">
+            <select id="state" 
+                    class="form-control" 
+                    @blur="$v.user.address.state.$touch()"
+                    v-model="user.address.state" 
+                    placeholder="Choose">
               <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
               <option value="Andhra Pradesh">Andhra Pradesh</option>
               <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -94,7 +109,11 @@
           </div>
           <div class="form-group col-md-2">
             <label for="zip">Zip</label>
-            <input type="number" class="form-control" id="zip" v-model="user.address.zip">
+            <input type="number" 
+                    class="form-control" 
+                    id="zip" 
+                    @blur="$v.user.address.zip.$touch()"
+                    v-model="user.address.zip">
           </div>
         </div>
 
@@ -104,7 +123,9 @@
         </div> -->
         
         <div class="row justify-content-center">
-          <button type="button" @click="nextStep" v-if="step == 1" :disabled="$v.user.email.$invalid || $v.user.contact.$invalid" class="btn btn-secondary m-2">Next</button>
+          <button type="button" @click="nextStep" v-if="step == 1" :disabled="$v.user.email.$invalid 
+                                                                            || $v.user.contact.$invalid" 
+                                                                            class="btn btn-secondary m-2">Next</button>
         </div>
 
       </section>
@@ -322,7 +343,6 @@
       <button type="button" @click="prevStep" v-if="step != 1" class="btn btn-secondary m-2">Previous</button>
       <button type="button" @click="nextStep" v-if="step != totalSteps" :disabled="$v.$invalid" class="btn btn-secondary m-2">Next</button>
     </div> -->
-        <p>{{ user.skills }}</p>
 
     <button type="submit" @click="submit" v-if="step == 6" class="d-block btn btn-primary my-5 mx-auto">Sumbit</button>
 
@@ -364,6 +384,9 @@
     },
     validations: {
       user: {
+        firstName: {
+          required
+        },
         email: {
           required,
           email
@@ -375,8 +398,17 @@
           minLen: minLength(10),
         },
         address: {
+          addressLine: {
+            required
+          },
+          city: {
+            required
+          },
+          state: {
+            required
+          },
           zip: {
-            numeric
+            required
           }
         },
         professionalSkills: {

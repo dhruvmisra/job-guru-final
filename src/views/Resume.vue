@@ -205,7 +205,7 @@
         html2canvas(resume).then(canvas => {
           let pdf = new jsPDF('p', 'mm', 'a4');
           pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 211, height, 'resume', 'SLOW');
-          pdf.save('Resume.pdf');
+          //pdf.save('Resume.pdf');
           const blob = pdf.output('blob');
 
           this.uploadFile(blob)
