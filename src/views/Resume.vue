@@ -211,7 +211,7 @@
           this.uploadFile(blob)
             .then(res => {
               console.log(res);
-              this.sendEmail();
+              //this.sendEmail();
             });
 
         });
@@ -236,15 +236,15 @@
           });
       },
 
-      sendEmail() {
-        const req = {
-          userId: this.email
-        }
-        axios.post('sendEmail/', req)
-          .then(res => {
-            console.log(res);
-          });
-      },
+      // sendEmail() {
+      //   const req = {
+      //     userId: this.email
+      //   }
+      //   axios.post('sendEmail/', req)
+      //     .then(res => {
+      //       console.log(res);
+      //     });
+      // },
 
       checkPresent() {
         this.user.education.forEach(e => {
@@ -268,12 +268,6 @@
     },
     mounted() {
       this.checkPresent();
-      let resumeWidth = document.getElementById('resume').offsetWidth;
-      let resumeHeight = document.getElementById('resume').offsetHeight;
-      let screenWidth = document.body.clientWidth;
-      let screenHeight = document.body.clientHeight;
-      console.log('Resume: ', resumeWidth, resumeHeight);
-      console.log('Screen: ', screenWidth, screenHeight);
 
       this.id = firebase.auth().currentUser.uid;
       this.email = firebase.auth().currentUser.email;

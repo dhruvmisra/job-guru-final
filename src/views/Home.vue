@@ -14,9 +14,9 @@
               <div class="card-body">
                 <h2 class="text-center">Steps</h2>
                 <ol>
-                  <li> <span>Step</span> </li>
-                  <li> <span>Step</span> </li>
-                  <li> <span>Step</span> </li>
+                  <li> <span>Make the payment</span> </li>
+                  <li> <span>Get the login details to the course on E-mail</span> </li>
+                  <li> <span>Attain Job Excellence</span> </li>
                 </ol>
               </div>
             </div>
@@ -40,7 +40,7 @@
                 <br>
                 <p style="font-size: 2em">For Complete</p>
                 <h1>Personality Transformation</h1>
-                <router-link to="/signup" tag="button" class="btn btn-primary">Buy Now</router-link>
+                <router-link to="/signup" v-if="!isLoggedIn" tag="button" class="btn btn-primary">Buy Now</router-link>
               </div>
               <div class="course col-md-12 col-lg-6 ml-auto">
                 <img src="../assets/course-book.png" alt="" class="">
@@ -86,10 +86,7 @@
 
         <div v-if="!isLoggedIn">
           <h4 class="text-center">Only limited registrations available</h4>
-          <a class="btn sign-btn" 
-              style="width: fit-content; margin: 15px auto;" 
-              href="/signup" 
-              role="button">Buy Now</a>
+          <router-link to="/signup" tag="button" class="btn sign-btn">Buy Now</router-link>
         </div>
       
       </div>
@@ -251,6 +248,7 @@
     mounted() {
       if(this.$store.getters.user) {
         this.isLoggedIn = true;
+        console.log(firebase.auth().currentUser);
         // let jumbo = document.getElementsByClassName('jumbotron', 'main');
         // jumbo = jumbo[0];
         // jumbo.classList.remove('default');

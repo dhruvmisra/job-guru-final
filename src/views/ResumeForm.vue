@@ -98,9 +98,10 @@
           </div>
         </div>
 
-        <div class="form-row">
+        <!-- File upload -->
+        <!-- <div class="form-row">
           <input type="file" class="w-100" @change="onFileUpload">
-        </div>
+        </div> -->
         
         <div class="row justify-content-center">
           <button type="button" @click="nextStep" v-if="step == 1" :disabled="$v.user.email.$invalid || $v.user.contact.$invalid" class="btn btn-secondary m-2">Next</button>
@@ -114,7 +115,7 @@
 
         <h4 class="heading">Professional Skills</h4>
 
-        <div :class="{invalid: ($v.user.professionalSkills.$error) && ($v.user.professionalSkills.$model!='')}">
+        <div :class="{invalid: ($v.user.professionalSkills.$error)}">
           <small>Choose no more than 5 skills</small><br>
           <div class="card block" @click="professionalStateChange" :id="skill" v-for="skill in professionalSkills" :key="skill">
             <div class="card-body">
@@ -125,7 +126,6 @@
             <span class="sr-only">Loading...</span>
           </div>
         </div>
-
         <div class="row justify-content-center" v-if="step == 2">
           <button type="button" @click="prevStep" class="btn btn-secondary m-2">Previous</button>
           <button type="button" @click="nextStep" :disabled="$v.user.professionalSkills.$invalid" class="btn btn-secondary m-2">Next</button>
@@ -139,6 +139,7 @@
 
         <h4 class="heading">Eduction</h4>
         <form v-for="(item, index) in user.education" :key="item">
+          <small @click="removeEducation(index)" class="remove btn btn-outline-danger px-2 py-1 my-2"> &#x2716; Remove</small>
           <div class="form-group">
             <label for="school">School/College</label>
             <input type="text" class="form-control" id="school" v-model="item.schoolName">
@@ -190,7 +191,7 @@
 
         <div class="row justify-content-center" v-if="step == 3">
           <button type="button" @click="prevStep" class="btn btn-secondary m-2">Previous</button>
-          <button type="button" @click="nextStep" :disabled="$v.user.professionalSkills.$invalid" class="btn btn-secondary m-2">Next</button>
+          <button type="button" @click="nextStep" :disabled="($v.user.professionalSkills.$invalid)" class="btn btn-secondary m-2">Next</button>
         </div>
 
       </section>
@@ -200,7 +201,8 @@
         <h4 class="heading">Step 4</h4>
 
         <h4 class="heading">Experience</h4>
-        <form v-for="item in user.experience" :key="item">
+        <form v-for="(item, index) in user.experience" :key="item">
+          <small @click="removeExperience(index)" class="remove btn btn-outline-danger px-2 py-1 my-2"> &#x2716; Remove</small>
           <div class="form-group">
             <label for="title">Title</label>
             <input type="text" class="form-control" id="title" v-model="item.title">
@@ -236,6 +238,12 @@
         </form>
 
         <button type="button" @click="addExperience" class="btn btn-small btn-outline-primary mb-5">Add Experience</button>
+
+        <div class="row justify-content-center" v-if="step == 4">
+          <button type="button" @click="prevStep" class="btn btn-secondary m-2">Previous</button>
+          <button type="button" @click="nextStep" :disabled="($v.user.professionalSkills.$invalid)" class="btn btn-secondary m-2">Next</button>
+        </div>
+
       </section>
 
       <!-- Skills -->
@@ -244,19 +252,24 @@
 
         <h4 class="heading">Skills</h4>
 
-        <div class="card block" @click="skillStateChange" :id="skill" v-for="skill in skills" :key="skill">
-          <div class="card-body">
-            {{ skill }}
+        <div :class="{invalid: ($v.user.skills.$error)}">
+          <small>Choose no more than 5 skills</small><br>
+          <div class="card block" @click="skillStateChange" :id="skill" v-for="skill in skills" :key="skill">
+            <div class="card-body">
+              {{ skill }}
+            </div>
+          </div>
+          <div class="d-block spinner-border mx-auto my-5 text-info" v-if="skills == null" role="status">
+            <span class="sr-only">Loading...</span>
           </div>
         </div>
-
-        <div class="d-block spinner-border mx-auto my-5 text-info" v-if="skills == null" role="status">
-          <span class="sr-only">Loading...</span>
+        <div class="row">
+          <input type="text" class="col-sm-3 m-3 form-control" v-model="customSkill">
+          <button type="button" @click="addSkill" class="d-inline btn btn-small btn-outline-primary my-2">Add Skill</button>
         </div>
 
 
-
-        <form class="form-inline my-3" v-for="item in skillSelected" :key="item">
+        <form class="form-inline my-3" v-for="item in user.skills" :key="item">
           <div class="form-group col-sm-3">
             <label for="skill">{{ item.skill }}</label>
           </div>
@@ -265,8 +278,13 @@
             <label for="level">Level: </label>
             <input type="range" class="custom-range mx-sm-3" min="0" max="5" id="level" v-model="item.level">
           </div>
-
         </form>
+
+        <div class="row justify-content-center" v-if="step == 5">
+          <button type="button" @click="prevStep" class="btn btn-secondary m-2">Previous</button>
+          <button type="button" @click="nextStep" :disabled="$v.user.skills.$invalid" class="btn btn-secondary m-2">Next</button>
+        </div>
+
       </section>
 
       <!-- Achievements -->
@@ -276,6 +294,7 @@
         <h4 class="heading">Achievements</h4>
 
         <form class="form-group my-3" v-for="item in user.achievements" :key="item">
+          <small @click="removeAchievement(index)" class="remove btn btn-outline-danger px-2 py-1 my-2"> &#x2716; Remove</small>
           <div class="form-group">
             <label for="achievement">Title</label>
             <input type="text" class="form-control" id="achievement" v-model="item.title">
@@ -290,6 +309,10 @@
 
         <button type="button" @click="addAchievement" class="btn btn-small btn-outline-primary mb-5">Add Achievement</button>
 
+        <div class="row justify-content-center" v-if="step == 6">
+          <button type="button" @click="prevStep" class="btn btn-secondary m-2">Previous</button>
+        </div>
+
       </section>
 
 
@@ -299,8 +322,9 @@
       <button type="button" @click="prevStep" v-if="step != 1" class="btn btn-secondary m-2">Previous</button>
       <button type="button" @click="nextStep" v-if="step != totalSteps" :disabled="$v.$invalid" class="btn btn-secondary m-2">Next</button>
     </div> -->
+        <p>{{ user.skills }}</p>
 
-    <button type="submit" @click="submit" class="d-block btn btn-primary my-5 mx-auto">Generate</button>
+    <button type="submit" @click="submit" v-if="step == 6" class="d-block btn btn-primary my-5 mx-auto">Sumbit</button>
 
   </div>
 </template>
@@ -315,9 +339,8 @@
       return {
         fileSelected: null,
         professionalSkills: null,
-        professionalSelected: [],
         skills: null,
-        skillSelected: [],
+        customSkill: '',
         step: 1,
         totalSteps: 6,
         user: {
@@ -371,19 +394,22 @@
               minLen: minLength(4),
             }
           }
+        },
+        skills: {
+          maxLen: maxLength(10)
         }
       }
     },
 
     created() {
-      setTimeout(() => {
-        axios.get('resume-form')
-          .then(res => {
-            this.professionalSkills = res.data.professionalSkills;
-            this.skills = res.data.skills;
-          });
-      },2000);
-      console.log(firebase.auth().currentUser);
+      axios.get('resume-form')
+        .then(res => {
+          this.professionalSkills = res.data.professionalSkills;
+          this.skills = res.data.skills;
+        });
+      const user = this.$store.getters.user;
+      this.user.contact = user.details.contact;
+      this.user.email = user.email;
     },
 
     methods: {
@@ -391,7 +417,11 @@
         console.log(this.user);
         this.user.userId = firebase.auth().currentUser.uid;
 
-        axios.post('saveUserData', this.user)
+        axios.post('saveUserData', {
+          savePath: '/details',
+          userId: this.user.userId,
+          data: this.user
+        })
           .then(res => {
             console.log(res);
             this.$router.push('/resume');
@@ -400,9 +430,10 @@
 
       addSkill() {
         this.user.skills.push({
-          skill: '',
+          skill: this.customSkill,
           level: 1
         });
+        this.customSkill = '';
       },
 
       addEducation() {
@@ -417,7 +448,7 @@
         });
       },
       removeEducation(index) {
-
+        this.user.education.splice(index, 1);
       },
 
       addExperience() {
@@ -431,6 +462,10 @@
           desc: ''
         });
       },
+      removeExperience(index) {
+        this.user.experience.splice(index, 1);
+      },
+
 
       addAchievement() {
         this.user.achievements.push({
@@ -438,17 +473,14 @@
           desc: ''
         })
       },
-
-      nextStep() {
-        if(this.step == 2) {
-          this.user.professionalSkills = this.professionalSelected;
-        }
-        else if(this.step == 5) {
-          this.user.skills = this.skillSelected;
-        }
-        this.step++;
+      removeAchievement(index) {
+        this.user.achievements.splice(index, 1);
       },
 
+
+      nextStep() {
+        this.step++;
+      },
       prevStep() {
         this.step--;
       },
@@ -470,12 +502,14 @@
         let skill = event.currentTarget;
         if(skill.classList.contains('block-selected')) {
           skill.classList.remove('block-selected');
-          let i = this.skillSelected.indexOf(skill.id);
-          this.skillSelected.splice(i, 1);
-
+          for(let i in this.user.skills) {
+              if(this.user.skills[i].skill == skill.id) {
+                this.user.skills.splice(i, 1);
+              }
+          }
         } else {
           skill.classList.add('block-selected');
-          this.skillSelected.push({
+          this.user.skills.push({
             skill: skill.id,
             level: 1
           });
@@ -526,6 +560,10 @@
   }
   .invalid input {
     border: 1px solid red;
+  }
+
+  .remove {
+    cursor: pointer;
   }
 
 </style>

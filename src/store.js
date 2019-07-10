@@ -24,7 +24,10 @@ export default new Vuex.Store({
     },
     set_details(state, details) {
       state.user.details = details;
-      console.log(state.user.details);
+      //console.log(state.user.details);
+    },
+    set_payment(state, payment) {
+      state.user.payment = payment;
     },
     clear_user(state) {
       state.user = null;
@@ -41,7 +44,8 @@ export default new Vuex.Store({
         axios.get('getUserData/' + firebase.auth().currentUser.uid)
           .then(res => {
             if(res.data) {
-              commit('set_details', res.data);
+              commit('set_details', res.data.details);
+              commit('set_payment', res.data.payment);
               dispatch('checkHasPaid');
             } else {
               commit('set_details', null);
@@ -53,7 +57,8 @@ export default new Vuex.Store({
       commit('clear_user');
     },
     checkHasPaid({commit, state}) {
-      if(state.user.details.payment != null) {
+      if(state.user.payment != null) {
+        console.log('has paid');
         commit('has_paid_true');
       }
     }

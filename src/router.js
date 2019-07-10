@@ -77,7 +77,8 @@ let router = new Router({
       name: 'plan',
       component: Plan,
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        requiresNoPayment: true
       }
     },
     {
@@ -126,6 +127,14 @@ router.beforeEach((to, from, next) => {
             }
           });
         }
+      } else if(to.matched.some(record => record.meta.requiresNoPayment)) {
+        //Go to Home page
+        next({
+          path: '/',
+          query: {
+            redirect: to.fullPath
+          }
+        });
       }
       //Proceed
       next();

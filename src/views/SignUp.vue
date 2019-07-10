@@ -85,6 +85,8 @@
 <script>
   import firebase from '../firebase';
   import {required, email, numeric, maxLength, minLength, sameAs} from 'vuelidate/lib/validators';
+  import { firestore } from 'firebase';
+  import axios from '../axios';
 
   export default {
     data() {
@@ -95,6 +97,7 @@
         confirmPass: '',
         contact: null,
         terms: false,
+        uid: '',
         loading: false
       }
     },
@@ -123,15 +126,33 @@
         this.loading = true;
         firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
           .then(user => {
-            this.$store.dispatch('setUser');
-            //this.$router.go({path: this.$router.path});
-            this.$router.push('/plans');
-            this.loading = false;
+            this.uid = user.user.uid;
+            return user.user.updateProfile({
+              displayName: this.name
+            }).then(res => {
+              axios.post('saveUserData', {
+                savePath: '/details',
+                data: {
+                  userId: this.uid,
+                  contact: this.contact,
+                }
+              })
+                .then(res => {
+                  console.log(res);
+                });
+              this.$store.dispatch('setUser');
+              //this.$router.go({path: this.$router.path});
+              this.$router.push('/plan');
+              this.loading = false;
+            }).catch(err => {
+              console.log(err);
+            });
           },
           err => {
             this.loading = false;
             alert(err.message);
-          })
+          });
+
       }
     }
   }

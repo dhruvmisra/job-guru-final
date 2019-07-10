@@ -1,4 +1,4 @@
 module.exports = {
-    publicPath: '/job-guru-final/',
-    // publicPath: ''
+    // publicPath: '/job-guru-final/',
+    publicPath: ''
 }
