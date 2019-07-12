@@ -72,21 +72,24 @@
             <div class="card number-card">
               <div class="card-body text-center">
                 <p class="number">5,000+</p>
-                <p class="number-text">Courses sold</p>
+                <p class="number-text" v-if="language === 'en'">Courses sold</p>
+                <p class="number-text" v-else>कोर्सेस बिक चुके हैं</p>
               </div>
             </div>
 
             <div class="card number-card">
               <div class="card-body text-center">
                 <p class="number">1,700</p>
-                <p>Users currently viewing</p>
+                <p v-if="language === 'en'">Users currently viewing</p>
+                <p v-else>खरीदने की तयारी में हैं</p>
               </div>
             </div>
 
             <div class="card number-card">
               <div class="card-body text-center">
                 <p class="number">1,000</p>
-                <p>Candidates helped</p>
+                <p v-if="language === 'en'">Candidates helped</p>
+                <p v-else>लोग अब तक लाभ उठा चुके हैं</p>
               </div>
             </div>
 
@@ -255,13 +258,17 @@
 
               <div class="col-md-5 p-4">
                   <div class="heading">
-                    <h1><span>Building</span> <br>your resume</h1>
-                    <p class="text-muted text-sm">We create a professional looking resume just from the basic information 
+                    <h1 v-if="language === 'en'"><span>Building</span> <br>your resume</h1>
+                    <h1 v-else>आपका रिज़्यूम हमारी जिम्मेदारी:</h1>
+                    <p class="text-muted text-sm" v-if="language === 'en'">We create a professional looking resume just from the basic information
                       you provide to us.</p>
+                    <p class="text-muted text-sm" v-else>आपकी दी हुई जानकारी से हम आपका प्रोफेशनल रिज़्यूम बनाएंगे</p>
                   </div>
                   <ul class="points">
-                    <li>Fill the form to share us your basic information.</li>
-                    <li>Sit back and relax, our team will build the resume for you and email you within 24 hrs.</li>
+                    <li v-if="language === 'en'">Fill the form to share us your basic information.</li>
+                    <li v-else>जिसके लिए आप वेबसाइट पे दिया हुआ फॉर्म भरें</li>
+                    <li v-if="language === 'en'">Sit back and relax, our team will build the resume for you and email you within 24 hrs.</li>
+                    <li v-else>हमारी टीम आपका रिज़्यूम बनाकर 24 घंटे के अंदर आपको मेल कर देगी</li>
                   </ul>
 
                   <!-- <p class="text-muted mt-5">Your future resume:</p>
@@ -280,15 +287,16 @@
             <div class="row justify-content-around pt-5">
               <div class="col-md-5">
                   <div class="heading">
-                    <h1><span>Personality Development </span> <br>course to shape your future</h1>
-                    <p class="text-muted text-sm">A good personality influences the people around, the charm 
-                      and aura of a refined personality creates an approachable and friendly image.</p>              
+                    <h1 v-if="language === 'en'"><span>Personality Development </span> <br>course to shape your future</h1>
+                    <h1 v-else>आपके बेहतर भविष्य के लिए क्यों है ये कोर्स जरूरी:</h1>
                   </div>
                   <ul class="points">
-                    <li>A good personality not only inspires confidence in others of your abilities and achievements, 
+                    <li v-if="language === 'en'">A good personality not only inspires confidence in others of your abilities and achievements,
                       but it also gives a boost to your self-confidence. </li>
-                    <li>Your social skill also reflects in your interviews, as the interviewer will keep a close watch 
+                    <li v-else>एक अच्छी पर्सनालिटी न सिर्फ किसी इंसान के अंदर आत्मविश्वास लाती है बल्कि पॉजिटिविटी भी लाती है और साथ ही आपको जीवन में आगे बढ़ने के लिए भी प्रेरित करती है</li>
+                    <li v-if="language === 'en'">Your social skill also reflects in your interviews, as the interviewer will keep a close watch
                       on how you carry yourself around other people and how you converse with them.</li>
+                    <li v-else>आपकी स्किल्स और एक्सपर्टाइज़ (विशेषज्ञता) के अलावा आपकी बॉडी लैंगुएज, सॉफ्ट स्किल्स और बातचीत का तरीका भी आपको नौकरी दिलाने में मदद करता है </li>
                   </ul>
 
               </div>

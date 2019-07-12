@@ -85,7 +85,7 @@
 <style>
     .language-option {
         position:absolute;
-        right: 250px !important;
+        right: 140px !important;
     }
 
 </style>
