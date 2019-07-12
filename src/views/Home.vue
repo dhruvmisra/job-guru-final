@@ -45,9 +45,13 @@
               </div>
             </div>
 
-            <video class="video-fluid intro" autoplay="autoplay" loop="loop" v-else>
+            <!-- <video class="video-fluid intro" autoplay="autoplay" loop="loop" v-else>
                 <source src="../assets/vid.mp4" type="video/mp4"/>
-            </video>
+            </video> -->
+            <div class="embed-responsive embed-responsive-16by9" v-else>
+              <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/0N_2ZFp8X4g?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+            </div>
 
           </div>
 
@@ -400,10 +404,15 @@
     height: fit-content;
     width: 80%;
     margin: 30px auto;
+    padding: 10px;
     border-radius: 10px;
     background-color: black;
     box-shadow: 0px -2px 20px rgb(218, 218, 218);
     z-index: 2;
+  }
+  .video > iframe {
+    width: 100%;
+    height:
   }
   .course > img {
     width: 300px;

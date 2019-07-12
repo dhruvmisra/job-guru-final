@@ -63,7 +63,7 @@
     /* Footer */
     .footer {
         position: relative;
-        background-color: #1D232A;
+        background-color: var(--dark);
         height: fit-content;
         font-size: 0.9em;
     }
