@@ -16,8 +16,8 @@
                     Languages
                 </a>
                 <div class="dropdown-menu dropdown-menu-right mx-md-auto language-option" aria-labelledby="navbarDropdownLanguageLink">
-                    <router-link to='/resume' tag="button" class="dropdown-item">Hindi</router-link>
-                    <button class="dropdown-item">English</button>
+                    <button class="dropdown-item" @click="switchToLanguage('hi')">Hindi</button>
+                    <button class="dropdown-item" @click="switchToLanguage('en')">English</button>
                 </div>
                 <router-link to="/signin" v-if="!isLoggedIn" tag="button"
                              class="btn btn-outline-primary mx-2 mx-md-auto">Sign In
@@ -64,8 +64,10 @@
                     this.$router.push('/signin');
                 })
             },
-            hindi() {
-              this.$store.dispatch('setLanguage', 'hi');
+            switchToLanguage(lang) {
+                this.language = lang;
+                this.$store.dispatch('setLanguage', lang);
+                console.log("this language ", this.$store.getters.language);
             }
         }
     }

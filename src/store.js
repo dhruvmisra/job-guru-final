@@ -72,7 +72,7 @@ export default new Vuex.Store({
         commit('has_paid_true');
       }
     },
-    set_language({commit}, lang) {
+    setLanguage({commit}, lang) {
       commit('set_language', lang);
     }
   }
