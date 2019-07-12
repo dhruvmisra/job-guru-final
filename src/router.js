@@ -11,6 +11,7 @@ import SignIn from './views/SignIn.vue'
 import Resume from './views/Resume.vue'
 import PaymentCheck from './views/PaymentCheck.vue'
 import Terms from './views/Terms.vue'
+import PrivacyPolicy from './views/PrivacyPolicy.vue'
 
 import store from './store';
 import firebase from './firebase';
@@ -104,6 +105,11 @@ let router = new Router({
       path: '/terms',
       name: 'terms',
       component: Terms,
+    },
+    {
+      path: '/privacy',
+      name: 'privacy',
+      component: PrivacyPolicy,
     },
   ]
 });

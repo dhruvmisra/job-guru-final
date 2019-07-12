@@ -104,8 +104,13 @@
                 <div class="row justify-content-center">
                   <div class="card package standard mx-auto">
                     <div class="card-body pt-5">
-                      <h2 class="price"> <del>₹9,999</del> ₹1,999</h2>
-                      
+                      <h2 class="price">What you get?</h2>
+                      <ul class="package-info align-middle">
+                        <li>Resume Building</li>
+                        <li>Personality Development Course</li>
+                      </ul>
+
+                      <h2 class="price pt-4"> <del>₹9,999</del> ₹1,999</h2>
                       <button @click="buyNow" class="btn buy-btn">
                         <div class="spinner-border mx-2 my-0" v-if="loading" role="status">
                           <span class="sr-only">Loading...</span>
@@ -115,7 +120,7 @@
                     </div>
                   </div>
 
-                  <div class="card package premium">
+                  <!-- <div class="card package premium">
                     <div class="card-body">
                       <h2 class="price">What you get?</h2>
                       <ul class="package-info align-middle">
@@ -123,7 +128,7 @@
                         <li>Personality Development Course</li>
                       </ul>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
             </section>
 

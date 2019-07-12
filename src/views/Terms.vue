@@ -4,31 +4,16 @@
     <div class="jumbotron jumbotron-fluid">
       <div class="jumbo-text container">
         <div class="heading text-center">
-          <h1><span>Case </span> <br> Studies</h1>
-          <p class="text-muted text-sm">The services we provide are unparalleled</p>
+          <h1><span>Terms </span> and Conditions</h1>
         </div>
       </div>
     </div>
     
     <!-- Studies -->
     <div class="card study curve">
-      <div class="row justify-content-center pt-5">
-      
-        <!-- <div class="col-md-5">
-          <h4 class="study-name">Brij Mohan, <span>B.A. Student, Delhi University</span></h4>
-          <p class="study-text">Life seemed like a bed of thorns until I came across Pushkar Sir’s
-            Personality Development course, who made it seem like a bed of roses. The classes were not mere 
-            lectures, rather they were therapeutic sessions for me. After each class I felt calmer, happier 
-            and more positive. Pushkar Sir delivers the lectures in a very practical and simple manner. 
-            One learns to identify his or her true personality, learns to have a grip over ones feelings, 
-            activate the "best version" and also how to have a better self-image and esteem. Pushkar Sir’s 
-            Personality Development classes are EXCELLENT. Thanks a lot Pushkar Sir. Join it and feel the 
-            positive change in you.</p>
-        </div> -->
+      <div class="p-5">
 
-        <h2><strong>Terms and Conditions</strong></h2>
-
-        <p>Welcome to ourjobguru!</p>
+        <p class="pt-5">Welcome to ourjobguru!</p>
 
         <p>These terms and conditions outline the rules and regulations for the use of OurJobGuru's Website, located at ourjobguru.com.</p>
 
@@ -161,5 +146,6 @@
 
 <style scoped>
   @import "../css/styles-case.css";
+
 
 </style>

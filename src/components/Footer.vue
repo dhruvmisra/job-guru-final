@@ -1,20 +1,5 @@
 <template>
     <div>
-        <!-- <div class="row my-2 pl-5">
-            <span>JobGuru &copy; </span>
-            <span> | All rights reserved</span>
-
-            <div class="ml-auto">
-                <router-link to="/case-studies" tag="span" class="link">
-                    <span>Case Studies</span>
-                </router-link>
-                <span> | </span>
-                <router-link to="/about-us" tag="span" class="link">
-                    <span>About Us & Contact Us</span>
-                </router-link>
-                <span> | </span>
-            </div>
-        </div> -->
         <!-- footer -->
         <footer class="footer">
             <div class="container">
@@ -26,6 +11,8 @@
                             <li class="list-title">Important Links</li>
                             <li><router-link to="/case-studies" tag="a" class="list-link">CASE STUDIES</router-link></li>
                             <li><router-link to="/about-us" tag="a" class="list-link">ABOUT US</router-link></li>
+                            <li><router-link to="/privacy" tag="a" class="list-link">PRIVACY POLICY</router-link></li>
+                            <li><router-link to="/terms" tag="a" class="list-link">TERMS & CONDITIONS</router-link></li>
                         </ul>                    
                     </div>
 
