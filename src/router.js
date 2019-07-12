@@ -10,6 +10,7 @@ import SignUp from './views/SignUp.vue'
 import SignIn from './views/SignIn.vue'
 import Resume from './views/Resume.vue'
 import PaymentCheck from './views/PaymentCheck.vue'
+import Terms from './views/Terms.vue'
 
 import store from './store';
 import firebase from './firebase';
@@ -72,15 +73,15 @@ let router = new Router({
         requiresAuth: true
       }
     },
-    {
-      path: '/plan',
-      name: 'plan',
-      component: Plan,
-      meta: {
-        requiresAuth: true,
-        requiresNoPayment: true
-      }
-    },
+    // {
+    //   path: '/plan',
+    //   name: 'plan',
+    //   component: Plan,
+    //   meta: {
+    //     requiresAuth: true,
+    //     requiresNoPayment: true
+    //   }
+    // },
     {
       path: '/resume-form',
       name: 'resume-form',
@@ -98,6 +99,11 @@ let router = new Router({
         requiresAuth: true,
         requiresPayment: true
       }
+    },
+    {
+      path: '/terms',
+      name: 'terms',
+      component: Terms,
     },
   ]
 });
@@ -121,7 +127,7 @@ router.beforeEach((to, from, next) => {
         if(!store.getters.hasPaid) {
           //Go to payment page
           next({
-            path: '/plan',
+            path: '/',
             query: {
               redirect: to.fullPath
             }

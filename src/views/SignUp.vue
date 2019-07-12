@@ -139,10 +139,11 @@
               })
                 .then(res => {
                   console.log(res);
+                  this.$store.dispatch('setUser');
+                  this.$router.push('/');
+                  this.loading = false;
                 });
-              this.$store.dispatch('setUser');
               //this.$router.go({path: this.$router.path});
-              this.$router.push('/plan');
               this.loading = false;
             }).catch(err => {
               console.log(err);

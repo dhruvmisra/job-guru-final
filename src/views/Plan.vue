@@ -148,18 +148,19 @@
     },
     mounted() {
       this.user = this.$store.getters.user;
-      console.log(this.user.details.contact);
+      console.log(this.user.uid);
     },
     methods: {
       buyNow() {
         this.loading = true;
         const contact = '' + this.user.details.contact;
+        const txnid = Math.floor(100000000 + Math.random()*9999999999);
         let req = {
           payment: {
             productinfo: 'Job Excellence Course',
-            txnid: '129387',
+            txnid: txnid,
             amount: '1999',
-            email: this.user.email,
+            email: this.user.email, 
             phone: contact,
             lastname: 'abc',
             firstname: 'def',
@@ -167,7 +168,7 @@
             furl: 'https://floating-reef-97336.herokuapp.com/payu/fail'
           },
           userData: {
-            userId: 'cuikyb2nnIcgxmqVOf5QFETWuno2'
+            userId: this.user.uid
           }
         }
 
@@ -176,7 +177,7 @@
           .then(res => {
             this.loading = false;
             console.log(res);
-            window.open(res.data, '_blank');
+            window.open(res.data);
           });
       },
 

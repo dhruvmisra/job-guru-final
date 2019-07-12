@@ -4,12 +4,9 @@
       <div class="jumbotron main default jumbotron-fluid">
 
         <div class="loggedIn-section" v-if="isLoggedIn">
-          <div class="row mx-auto justify-content-center">
-            <router-link to="/resume-form" tag="button" class="btn btn-primary">Create your resume</router-link>
-            <router-link to="/resume" tag="button" class="btn btn-info">View your resume</router-link>
-          </div>
 
-          <div class="container">
+
+          <!-- <div class="container">
             <div class="card steps col-md-12 col-lg-6 mx-auto bg-transparent border">
               <div class="card-body">
                 <h2 class="text-center">Steps</h2>
@@ -20,32 +17,38 @@
                 </ol>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
 
         <div class="container text-center jumbo-text" v-else>
           <h1 class="text-white">Having talent and still not getting suitable jobs?</h1>
           <p class="text-muted">So here is JobGuru for you to get your dream jobs by hand-crafting your resume.</p>
-          <router-link to="/signup" tag="button" class="btn btn-primary btn-lg mb-5">Buy Now</router-link>
+          <router-link to="/signup" tag="button" class="btn btn-primary btn-lg mb-5">Sign Up</router-link>
         </div>
 
         <!-- Who are we -->
-        <h1 class="who-text text-center"> <span>Job</span> Excellence Course</h1>
+        <h1 class="who-text text-center" v-if="!isLoggedIn"> <span>Job</span> Excellence Course</h1>
+        <h1 class="who-text text-center" v-else> <span>What</span> We Do?</h1>
         <div class="whoWeAre">
 
           <div class="video card">
-            <div class="row">
+            <div class="row" v-if="!isLoggedIn">
               <div class="text col-md-12 col-lg-6">
                 <h2>A STEP BY STEP ONLINE TRAINING COURSE</h2>
                 <br>
                 <p style="font-size: 2em">For Complete</p>
                 <h1>Personality Transformation</h1>
-                <router-link to="/signup" v-if="!isLoggedIn" tag="button" class="btn btn-primary">Buy Now</router-link>
+                <router-link to="/signup" v-if="!isLoggedIn" tag="button" class="btn btn-primary">Sign Up</router-link>
               </div>
               <div class="course col-md-12 col-lg-6 ml-auto">
                 <img src="../assets/course-book.png" alt="" class="">
               </div>
             </div>
+
+            <video class="video-fluid intro" autoplay="autoplay" loop="loop" v-else>
+                <source src="../assets/vid.mp4" type="video/mp4"/>
+            </video>
+
           </div>
 
         </div>
@@ -58,7 +61,7 @@
       <div class="card numbers curve">    
         <!-- Numbers -->
         <div class="container">
-          <div class="row justify-content-around">
+          <div class="row justify-content-around" v-if="!isLoggedIn">
             
             <div class="card number-card">
               <div class="card-body text-center">
@@ -82,172 +85,261 @@
             </div>
 
           </div>
+
+
+          <div class="card how-it-works border-0" v-else>
+            <div class="card-title">
+              <div class="heading">
+                <h2><span>How </span> It Works?</h2>
+              </div>
+            </div>
+            <div class="card-body">
+              Click on the button below to proceed and make the payment. Once the payment is done you will 
+              need to fill a resume form so that our experts can generate a perfect resume for you. 
+              Within 24 hrs a mail will be sent to your registered mail id with the link of course and your resume. 
+              You can click on the link to start your job excellence course.
+            </div>
+
+            <section v-if="!hasPaid">
+                <div class="row justify-content-center">
+                  <div class="card package standard mx-auto">
+                    <div class="card-body pt-5">
+                      <h2 class="price"> <del>₹9,999</del> ₹1,999</h2>
+                      
+                      <button @click="buyNow" class="btn buy-btn">
+                        <div class="spinner-border mx-2 my-0" v-if="loading" role="status">
+                          <span class="sr-only">Loading...</span>
+                        </div>
+                        <span v-else>Buy Now</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="card package premium">
+                    <div class="card-body">
+                      <h2 class="price">What you get?</h2>
+                      <ul class="package-info align-middle">
+                        <li>Resume Building</li>
+                        <li>Personality Development Course</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+            </section>
+
+            <section v-else>
+              <div class="row mx-auto justify-content-center">
+                <router-link to="/resume-form" tag="button" class="btn btn-primary">Create your resume</router-link>
+                <router-link to="/resume" tag="button" class="btn btn-info">View your resume</router-link>
+              </div>
+            </section>
+
+          </div>
+
+
         </div>
 
-        <div v-if="!isLoggedIn">
+        <div class="pb-5 mb-5" v-if="!isLoggedIn">
           <h4 class="text-center">Only limited registrations available</h4>
-          <router-link to="/signup" tag="button" class="btn sign-btn">Buy Now</router-link>
+          <router-link to="/signup" tag="button" class="btn sign-btn">Sign Up</router-link>
         </div>
       
       </div>
 
-      <div class="card curve what-you-get">
-        <div class="heading">
-          <h2><span>What will </span> you get?</h2>
-          <p class="text-muted text-sm">We give you the best personality development course
-              which will help you get closer to your dream job.</p>
+      <section v-if="!isLoggedIn">
+        <div class="card curve what-you-get">
+          <div class="heading">
+            <h2><span>What will </span> you get?</h2>
+            <p class="text-muted text-sm">We give you the best personality development course
+                which will help you get closer to your dream job.</p>
+          </div>
+
+          <div class="row justify-content-center">
+
+            <div class="card feature">
+              <div class="feature-img">
+                <img src="../assets/feature1.jpg" alt="" class="w-100 h-100">
+              </div>
+              <div class="card-body">
+                <h4 class="card-title">50 Days Online Training</h4>
+                <p>You Will Get An Online Course of 50+ Training Video Sessions To 
+                  Learn Everything It Takes To transform Yourself Completely.</p>
+              </div>
+            </div>
+
+            <div class="card feature">
+              <div class="feature-img">
+                <img src="../assets/feature2.jpg" alt="" class="w-100 h-100">
+              </div>
+              <div class="card-body">
+                <h4 class="card-title">E - Book</h4>
+                <p>A Complete Guide To All Your Questions Which In Itself Is The Complete Course Elaborated!</p>
+              </div>
+            </div>
+
+            <div class="card feature">
+              <div class="feature-img">
+                <img src="../assets/feature3.jpg" alt="" class="w-100 h-100">
+              </div>
+              <div class="card-body">
+                <h4 class="card-title">Workbook</h4>
+                <p>A WorkBook To Do It Yourself! Action Plans To Work On and 
+                  Question To Answer To Deepen Your Understanding and 
+                  Preparing The Warrior Inside You For The Real Battle Of Life!</p>
+              </div>
+            </div>
+
+            <div class="card feature">
+              <div class="feature-img">
+                <img src="../assets/feature4.jpg" alt="" class="w-100 h-100">
+              </div>
+              <div class="card-body">
+                <h4 class="card-title">Certificate</h4>
+                <p>This Course Will Transform Your Personality and Will Make You The 
+                  Best Version Of YourSelf!On Completing The Comprehensive Course 
+                  Provide You With The Certificate Signed By PRT!</p>
+              </div>
+            </div>
+
+          </div>
+
         </div>
 
-        <div class="row justify-content-center">
-
-          <div class="card feature">
-            <div class="feature-img">
-              <img src="../assets/feature1.jpg" alt="" class="w-100 h-100">
-            </div>
-            <div class="card-body">
-              <h4 class="card-title">50 Days Online Training</h4>
-              <p>You Will Get An Online Course of 50+ Training Video Sessions To 
-                Learn Everything It Takes To transform Yourself Completely.</p>
-            </div>
-          </div>
-
-          <div class="card feature">
-            <div class="feature-img">
-              <img src="../assets/feature2.jpg" alt="" class="w-100 h-100">
-            </div>
-            <div class="card-body">
-              <h4 class="card-title">E - Book</h4>
-              <p>A Complete Guide To All Your Questions Which In Itself Is The Complete Course Elaborated!</p>
-            </div>
-          </div>
-
-          <div class="card feature">
-            <div class="feature-img">
-              <img src="../assets/feature3.jpg" alt="" class="w-100 h-100">
-            </div>
-            <div class="card-body">
-              <h4 class="card-title">Workbook</h4>
-              <p>A WorkBook To Do It Yourself! Action Plans To Work On and 
-                Question To Answer To Deepen Your Understanding and 
-                Preparing The Warrior Inside You For The Real Battle Of Life!</p>
-            </div>
-          </div>
-
-          <div class="card feature">
-            <div class="feature-img">
-              <img src="../assets/feature4.jpg" alt="" class="w-100 h-100">
-            </div>
-            <div class="card-body">
-              <h4 class="card-title">Certificate</h4>
-              <p>This Course Will Transform Your Personality and Will Make You The 
-                Best Version Of YourSelf!On Completing The Comprehensive Course 
-                Provide You With The Certificate Signed By PRT!</p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- Resume section -->
-      <div class="card resume curve">
-          <!-- <p class="fact col-md-6 mx-auto text-center text-muted">According to a study/research, it is found that over 
-            65% of the candidates don’t get an interview call because of how their resume is built.</p> -->
-            
-        <div class="card-body">
-          <div class="row justify-content-center pt-5">
-            <div class="col-md-4 resume-img">
-              <img src="../assets/resume.png" alt="" class="h-100">
-            </div>
-
-            <div class="col-md-5 p-4">
-                <div class="heading">
-                  <h1><span>Building</span> <br>your resume</h1>
-                  <p class="text-muted text-sm">We create a professional looking resume just from the basic information 
-                    you provide to us.</p>
-                </div>
-                <ul class="points">
-                  <li>Fill the form to share us your basic information.</li>
-                  <li>Sit back and relax, our team will build the resume for you and email you within 24 hrs.</li>
-                </ul>
-
-                <!-- <p class="text-muted mt-5">Your future resume:</p>
-                <button class="btn btn-info">View a template</button> -->
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- PD section -->
-      <div class="card pd curve">
-        <!-- <p class="fact col-md-6 mx-auto text-center text-muted">Over 70% of the candidates are rejected 
-          within the initial five seconds of the interview because they lack the right attitude and 
-          personality to impress the recruiter/interviewee.</p> -->
-        <div class="card-body">
-          <div class="row justify-content-around pt-5">
-            <div class="col-md-5">
-                <div class="heading">
-                  <h1><span>Personality Development </span> <br>course to shape your future</h1>
-                  <p class="text-muted text-sm">A good personality influences the people around, the charm 
-                    and aura of a refined personality creates an approachable and friendly image.</p>              
-                </div>
-                <ul class="points">
-                  <li>A good personality not only inspires confidence in others of your abilities and achievements, 
-                    but it also gives a boost to your self-confidence. </li>
-                  <li>Your social skill also reflects in your interviews, as the interviewer will keep a close watch 
-                    on how you carry yourself around other people and how you converse with them.</li>
-                </ul>
-
-            </div>
-
-            <div class="col-md-3">
-              <img src="../assets/pd.png" alt="" class="resume-img">
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="card curve">
-        <div class="card-body">
-            <!-- <div class="offer-section border">
+        <!-- Resume section -->
+        <div class="card resume curve">
+            <!-- <p class="fact col-md-6 mx-auto text-center text-muted">According to a study/research, it is found that over 
+              65% of the candidates don’t get an interview call because of how their resume is built.</p> -->
               
-              <div class="course-book">
-                <img src="../assets/course-book.png" alt="" class="w-100 h-100">
-              </div>
-              <div class="offer card">
-                <div class="card-header">
-                  <h3 class="card-title">Limited period offer</h3>
-                </div>
-                <div class="card-body text-center">
-                  <h3>Discount <br> 80% off</h3>
-                </div>
+          <div class="card-body">
+            <div class="row justify-content-center pt-5">
+              <div class="col-md-4 resume-img">
+                <img src="../assets/resume.png" alt="" class="h-100">
               </div>
 
-            </div> -->
+              <div class="col-md-5 p-4">
+                  <div class="heading">
+                    <h1><span>Building</span> <br>your resume</h1>
+                    <p class="text-muted text-sm">We create a professional looking resume just from the basic information 
+                      you provide to us.</p>
+                  </div>
+                  <ul class="points">
+                    <li>Fill the form to share us your basic information.</li>
+                    <li>Sit back and relax, our team will build the resume for you and email you within 24 hrs.</li>
+                  </ul>
+
+                  <!-- <p class="text-muted mt-5">Your future resume:</p>
+                  <button class="btn btn-info">View a template</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PD section -->
+        <div class="card pd curve">
+          <!-- <p class="fact col-md-6 mx-auto text-center text-muted">Over 70% of the candidates are rejected 
+            within the initial five seconds of the interview because they lack the right attitude and 
+            personality to impress the recruiter/interviewee.</p> -->
+          <div class="card-body">
+            <div class="row justify-content-around pt-5">
+              <div class="col-md-5">
+                  <div class="heading">
+                    <h1><span>Personality Development </span> <br>course to shape your future</h1>
+                    <p class="text-muted text-sm">A good personality influences the people around, the charm 
+                      and aura of a refined personality creates an approachable and friendly image.</p>              
+                  </div>
+                  <ul class="points">
+                    <li>A good personality not only inspires confidence in others of your abilities and achievements, 
+                      but it also gives a boost to your self-confidence. </li>
+                    <li>Your social skill also reflects in your interviews, as the interviewer will keep a close watch 
+                      on how you carry yourself around other people and how you converse with them.</li>
+                  </ul>
+
+              </div>
+
+              <div class="col-md-3">
+                <img src="../assets/pd.png" alt="" class="resume-img">
+              </div>
+            </div>
+          </div>
 
         </div>
-      </div>
+
+        <div class="card curve">
+          <div class="card-body">
+              <!-- <div class="offer-section border">
+                
+                <div class="course-book">
+                  <img src="../assets/course-book.png" alt="" class="w-100 h-100">
+                </div>
+                <div class="offer card">
+                  <div class="card-header">
+                    <h3 class="card-title">Limited period offer</h3>
+                  </div>
+                  <div class="card-body text-center">
+                    <h3>Discount <br> 80% off</h3>
+                  </div>
+                </div>
+
+              </div> -->
+
+          </div>
+        </div>
+      </section>
 
   </div>
 </template>
 
 <script>
-  import axios from 'axios';
+  import axios from '../axios';
   import firebase from '../firebase';
 
   export default {
     data() {
       return {
-        isLoggedIn: false
+        isLoggedIn: false,
+        hasPaid: false,
+        user: null,
+        loading: false
       }
     },
     methods: {
+      buyNow() {
+        this.loading = true;
+        const contact = '' + this.user.details.contact;
+        const txnid = Math.floor(100000000 + Math.random()*9999999999);
+        let req = {
+          payment: {
+            productinfo: 'Job Excellence Course',
+            txnid: txnid,
+            amount: '1999',
+            email: this.user.email, 
+            phone: contact,
+            lastname: 'abc',
+            firstname: 'def',
+            surl: 'https://floating-reef-97336.herokuapp.com/payu/success',
+            furl: 'https://floating-reef-97336.herokuapp.com/payu/fail'
+          },
+          userData: {
+            userId: this.user.uid
+          }
+        }
 
+        console.log(JSON.stringify(req));
+        axios.post('makePayment', req)
+          .then(res => {
+            this.loading = false;
+            console.log(res);
+            window.open(res.data);
+          });
+      },
     },
     mounted() {
       if(this.$store.getters.user) {
+        this.user = this.$store.getters.user;
         this.isLoggedIn = true;
+        if(user.payment) {
+          this.hasPaid = true;
+        }
         console.log(firebase.auth().currentUser);
         // let jumbo = document.getElementsByClassName('jumbotron', 'main');
         // jumbo = jumbo[0];
@@ -267,7 +359,7 @@
   
   .jumbotron.main {
     position: relative;
-    padding-bottom: 0;
+    padding: 0;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -333,7 +425,7 @@
   .numbers {
       margin-top: -25em;
       padding-top: 22em;
-      padding-bottom: 8em;
+      /* padding-bottom: 8em; */
   }
   .number-card {
       margin: 20px;
@@ -435,7 +527,7 @@
     padding-bottom: 10em;
   }
   .loggedIn-section {
-    padding-bottom: 12em
+    /* padding-bottom: 12em */
   }
   .loggedIn-section > .row > button {
     font-size: 1.5em;
@@ -518,6 +610,14 @@
     background-color: white;
     padding-top: 10em;
     padding-bottom: 0;
+  }
+
+  .how-it-works {
+    margin-top: 1em;
+    font-size: 1.5em;
+    text-align: center;
+    padding: 30px;
+    /* background-color: rgb(228, 250, 255) */
   }
 
   @media (max-width: 1024px) {

@@ -53,6 +53,9 @@ export default new Vuex.Store({
           });
       }
     },
+    setPayment({commit}, payment) {
+      commit('set_payment', payment);
+    },
     clearUser({commit}) {
       commit('clear_user');
     },

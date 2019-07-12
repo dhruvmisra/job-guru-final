@@ -1,6 +1,15 @@
 <template>
   <div>
-    <button class="d-block btn btn-secondary mx-auto my-5" @click="generate">Generate</button>
+    <!-- <button class="d-block btn btn-secondary mx-auto my-5" @click="generate">Generate</button> -->
+    <button @click="generate" type="submit" class="d-block btn btn-secondary mx-auto my-5">
+      <div class="spinner-border mx-2 my-0" v-if="loading" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <span v-else>Generate</span>
+    </button>    
+
+    <h4 class="text-center mb-5">The resume will be emailed to you within 24 hours</h4>
+    
     <div id="resume">
       <div class="">
 
@@ -106,6 +115,7 @@
         user: {
           id: '',
           email: '',
+          loading: false,
           firstName: 'First',
           lastName: 'Last',
           email: 'test@testing.com',
@@ -192,11 +202,13 @@
         //   this.checkPresent();
         //   this.fillAbout();
         // })  
-
+        this.loading = true;
         await axios('getUserData/' + this.id)
           .then(res => {
             console.log(res.data);
-            this.user = res.data;
+            this.user = res.data.details;
+            this.checkPresent();
+            this.fillAbout();
           });
 
         let resume = document.getElementById('resume');   
@@ -211,9 +223,10 @@
           this.uploadFile(blob)
             .then(res => {
               console.log(res);
+              this.loading = false;
               //this.sendEmail();
             });
-
+          this.loading = false;
         });
       },
       uploadFile(file) {
