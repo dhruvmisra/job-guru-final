@@ -11,7 +11,7 @@
               <div class="card-body">
                 <h2 class="text-center">Steps</h2>
                 <ol>
-                  <li> <span>Make the payment</span> </li>
+                  -<li> <span>Make the payment</span> </li>
                   <li> <span>Get the login details to the course on E-mail</span> </li>
                   <li> <span>Attain Job Excellence</span> </li>
                 </ol>
@@ -21,9 +21,18 @@
         </div>
 
         <div class="container text-center jumbo-text" v-else>
+<<<<<<< HEAD
           <h1 class="text-white">Having talent and still not getting suitable jobs?</h1>
           <p class="text-muted">So here is JobGuru for you to get your dream jobs.</p>
           <router-link to="/signup" tag="button" class="btn btn-primary btn-lg mb-5">Sign Up</router-link>
+=======
+          <h1 class="text-white" v-if="language === 'en'">Having talent and still not getting suitable jobs?</h1>
+          <h1 class="text-white" v-else>क्या आपके पास टैलेंट होते हुए भी एक अच्छी नौकरी नहीं है?</h1>
+          <p class="text-muted" v-if="language === 'en'">So here is JobGuru for you to get your dream jobs by hand-crafting your resume.</p>
+          <p class="text-muted" v-else>अगर ऐसा है तो आपको चिंता करने की जरूरत नहीं है क्यूंकि आपके पास है OURJOBGURU तो देर किस बात की</p>
+          <router-link to="/signup" tag="button" class="btn btn-primary btn-lg mb-5" v-if="language === 'en'">Sign Up</router-link>
+          <router-link to="/signup" tag="button" class="btn btn-primary btn-lg mb-5" v-else>साइन अप</router-link>
+>>>>>>> 7c36adac9307d14152f9678656bde30a1331a1ae
         </div>
 
         <!-- Who are we -->
@@ -153,8 +162,10 @@
         </div>
 
         <div class="pb-5 mb-5" v-if="!isLoggedIn">
-          <h4 class="text-center">Only limited registrations available</h4>
-          <router-link to="/signup" tag="button" class="btn sign-btn">Sign Up</router-link>
+          <h4 class="text-center" v-if="language === 'en'">Only limited registrations available</h4>
+          <h4 class="text-center" v-else>लिमिटेड रेजिस्ट्रेशन</h4>
+          <router-link to="/signup" tag="button" class="btn sign-btn" v-if="language === 'en'">Sign Up</router-link>
+          <router-link to="/signup" tag="button" class="btn sign-btn" v-else>साइन अप</router-link>
         </div>
       
       </div>
@@ -162,9 +173,11 @@
       <section v-if="!isLoggedIn">
         <div class="card curve what-you-get">
           <div class="heading">
-            <h2><span>What will </span> you get?</h2>
-            <p class="text-muted text-sm">We give you the best personality development course
+            <h2 v-if="language === 'en'"><span>What will </span> you get?</h2>
+            <h2 v-else><span>इससे आपको  </span> क्या मिलेगा</h2>
+            <p class="text-muted text-sm" v-if="language === 'en'">We give you the best personality development course
                 which will help you get closer to your dream job.</p>
+              <p class="text-muted text-sm" v-else>हम आपको एक पर्सनालिटी बनने में मदद में मदद करेंगे जो आपको आपकी ड्रीम जॉब के करीब लेकर जाएगी.</p>
           </div>
 
           <div class="row justify-content-center">
