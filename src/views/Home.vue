@@ -22,7 +22,7 @@
 
         <div class="container text-center jumbo-text" v-else>
           <h1 class="text-white">Having talent and still not getting suitable jobs?</h1>
-          <p class="text-muted">So here is JobGuru for you to get your dream jobs by hand-crafting your resume.</p>
+          <p class="text-muted">So here is JobGuru for you to get your dream jobs.</p>
           <router-link to="/signup" tag="button" class="btn btn-primary btn-lg mb-5">Sign Up</router-link>
         </div>
 
@@ -50,7 +50,6 @@
             </video> -->
             <div class="embed-responsive embed-responsive-16by9" v-else>
               <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/0N_2ZFp8X4g?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
             </div>
 
           </div>
@@ -93,15 +92,18 @@
 
           <div class="card how-it-works border-0" v-else>
             <div class="card-title">
-              <div class="heading">
+              <div class="heading text-center">
                 <h2><span>How </span> It Works?</h2>
               </div>
             </div>
             <div class="card-body">
-              Click on the button below to proceed and make the payment. Once the payment is done you will 
-              need to fill a resume form so that our experts can generate a perfect resume for you. 
-              Within 24 hrs a mail will be sent to your registered mail id with the link of course and your resume. 
-              You can click on the link to start your job excellence course.
+              <ol>
+                <li>Click on the button below to proceed and make the payment.</li>
+                <li>Once the payment is done you will 
+              need to fill a resume form so that our experts can generate a perfect resume for you.</li>
+                <li>Within 24 hrs a mail will be sent to your registered mail id with the link of course and your resume.</li>
+                <li>You can click on the link to start your job excellence course.</li>
+              </ol>
             </div>
 
             <section v-if="!hasPaid">
@@ -111,7 +113,7 @@
                       <h2 class="price">What you get?</h2>
                       <ul class="package-info align-middle">
                         <li>Resume Building</li>
-                        <li>Personality Development Course</li>
+                        <li>Job Excellence Course</li>
                       </ul>
 
                       <h2 class="price pt-4"> <del>₹9,999</del> ₹1,999</h2>
@@ -629,7 +631,6 @@
   .how-it-works {
     margin-top: 1em;
     font-size: 1.5em;
-    text-align: center;
     padding: 30px;
     /* background-color: rgb(228, 250, 255) */
   }

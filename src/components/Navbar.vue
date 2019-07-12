@@ -64,8 +64,10 @@
                     this.$router.push('/signin');
                 })
             },
-            hindi() {
-              this.$store.dispatch('setLanguage', 'hi');
+            switchToLanguage(lang) {
+                this.language = lang;
+                this.$store.dispatch('setLanguage', lang);
+                console.log("this language ", this.$store.getters.language);
             }
         }
     }
