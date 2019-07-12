@@ -344,8 +344,8 @@
             phone: contact,
             lastname: 'abc',
             firstname: 'def',
-            surl: 'https://floating-reef-97336.herokuapp.com/payu/success',
-            furl: 'https://floating-reef-97336.herokuapp.com/payu/fail'
+            surl: 'http://192.168.0.105:3000/payu/success',
+            furl: 'http://192.168.0.105:3000/payu/fail'
           },
           userData: {
             userId: this.user.uid
@@ -365,7 +365,7 @@
       if(this.$store.getters.user) {
         this.user = this.$store.getters.user;
         this.isLoggedIn = true;
-        if(user.payment) {
+        if(this.user.payment) {
           this.hasPaid = true;
         }
         this.language = this.$store.getters.language;

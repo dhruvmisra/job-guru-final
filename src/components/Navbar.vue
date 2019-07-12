@@ -11,14 +11,14 @@
                 <!-- <router-link to="/why-us" tag="a" class="nav-item nav-link mx-md-auto">Why Us</router-link> -->
                 <router-link to="/case-studies" tag="a" class="nav-item nav-link mx-md-auto">Case Studies</router-link>
                 <router-link to="/about-us" tag="a" class="nav-item nav-link mx-md-auto">About Us</router-link>
-                <!-- <a class="nav-link dropdown-toggle mx-md-auto" href="#" id="navbarDropdownLanguageLink"
+                <a class="nav-link dropdown-toggle mx-md-auto" href="#" id="navbarDropdownLanguageLink"
                    role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Languages
                 </a>
                 <div class="dropdown-menu dropdown-menu-right mx-md-auto language-option" aria-labelledby="navbarDropdownLanguageLink">
                     <router-link to='/resume' tag="button" class="dropdown-item">Hindi</router-link>
                     <button class="dropdown-item">English</button>
-                </div> -->
+                </div>
                 <router-link to="/signin" v-if="!isLoggedIn" tag="button"
                              class="btn btn-outline-primary mx-2 mx-md-auto">Sign In
                 </router-link>
