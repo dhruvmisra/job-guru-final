@@ -99,19 +99,25 @@
           <div class="card how-it-works border-0" v-if="isLoggedIn ">
             <div class="card-title">
               <div class="heading text-center" v-if="!hasPaid">
-                <h2><span>How </span> It Works?</h2>
+                <h2 v-if="language === 'en'"><span>How </span> It Works?</h2>
+                <h2 v-else><span>ये कैसे काम करेगा</span></h2>
               </div>
               <div class="heading text-center" v-else>
-                <h2><span>Congratulations </span></h2>
+                <h2 v-if="language === 'en'"><span>Congratulations </span></h2>
+                <h2 v-else><span>बधाई हो</span></h2>
               </div>
             </div>
             <div class="card-body" v-if="!hasPaid">
               <ol>
-                <li>Click on the button below to proceed and make the payment.</li>
-                <li>Once the payment is done you will 
-              need to fill a resume form so that our experts can generate a perfect resume for you.</li>
-                <li>Within 24 hrs a mail will be sent to your registered mail id with the link of course and your resume.</li>
-                <li>You can click on the link to start your job excellence course.</li>
+                <li v-if="language === 'en'">Click on the button below to proceed and make the payment.</li>
+                <li v-else>इस कोर्स को खरीदने के लिए आप नीचे दिए हुए BUY NOW के बटन पर क्लिक करें और पेमेंट करें</li>
+                <li v-if="language === 'en'">Once the payment is done you will
+                 need to fill a resume form so that our experts can generate a perfect resume for you.</li>
+                <li v-else>जैसे ही आप पेमेंट करेंगे आपको एक फॉर्म भरने की जरूरत है जिसके बाद हमारे एक्सपर्ट आपके लिए प्रोफेशनल रिज़्यूम बनाएंगे</li>
+                <li v-if="language === 'en'">Within 24 hrs a mail will be sent to your registered mail id with the link of course and your resume.</li>
+                <li v-else>पेमेंट करने के 24 घंटे के अंदर ही आपको आपका रिज़्यूम और पर्सनालिटी डेवलॅपमेंट के कोर्स का लिंक आपकी ईमेल आईडी पर मिल जायेगा</li>
+                <li v-if="language === 'en'">You can click on the link to start your job excellence course.</li>
+                <li v-else>और इसके तुरंत बाद ही आप बेहतरीन कोर्स की शुरुआत कर सकते हैं.</li>
               </ol>
             </div>
             <div class="card-body text-center" v-else>
