@@ -45,7 +45,8 @@
         data() {
             return {
                 isLoggedIn: false,
-                currentUser: null
+                currentUser: null,
+                language: 'en'
             }
         },
         created() {
@@ -53,6 +54,8 @@
                 this.isLoggedIn = true;
                 this.currentUser = this.$store.getters.user;
             }
+            this.language = this.$store.getters.language;
+            console.log(this.language);
         },
         methods: {
             logout() {
@@ -60,6 +63,9 @@
                     this.$store.dispatch('clearUser');
                     this.$router.push('/signin');
                 })
+            },
+            hindi() {
+              this.$store.dispatch('setLanguage', 'hi');
             }
         }
     }

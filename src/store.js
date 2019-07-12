@@ -8,7 +8,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: null,
-    hasPaid: false
+    hasPaid: false,
+    language: 'en'
   },
   getters: {
     user(state) {
@@ -16,6 +17,9 @@ export default new Vuex.Store({
     },
     hasPaid(state) {
       return state.hasPaid;
+    },
+    language(state) {
+      return state.language;
     }
   },
   mutations: {
@@ -35,6 +39,9 @@ export default new Vuex.Store({
     },
     has_paid_true(state) {
       state.hasPaid = true;
+    },
+    set_language(state, lang) {
+      state.language = lang;
     }
   },
   actions: {
@@ -64,6 +71,9 @@ export default new Vuex.Store({
         console.log('has paid');
         commit('has_paid_true');
       }
+    },
+    set_language({commit}, lang) {
+      commit('set_language', lang);
     }
   }
 })
