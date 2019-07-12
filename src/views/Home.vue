@@ -165,10 +165,14 @@
               <div class="feature-img">
                 <img src="../assets/feature1.jpg" alt="" class="w-100 h-100">
               </div>
-              <div class="card-body">
+              <div class="card-body" v-if="language === 'en'">
                 <h4 class="card-title">50 Days Online Training</h4>
                 <p>You Will Get An Online Course of 50+ Training Video Sessions To 
                   Learn Everything It Takes To transform Yourself Completely.</p>
+              </div>
+              <div class="card-body" v-else>
+                <h4 class="card-title">2 महीने की ऑनलाइन ट्रेनिंग</h4>
+                <p>आपको 50+ वीडियो का ऑनलाइन ट्रेनिंग कोर्स मलेगा जिसमें आप वो सब सीखेंगे जो आपको एक बेहतर व्यक्तित्व में बदलने में मददगार होगा।</p>
               </div>
             </div>
 
@@ -176,9 +180,13 @@
               <div class="feature-img">
                 <img src="../assets/feature2.jpg" alt="" class="w-100 h-100">
               </div>
-              <div class="card-body">
+              <div class="card-body" v-if="language === 'en'">
                 <h4 class="card-title">E - Book</h4>
                 <p>A Complete Guide To All Your Questions Which In Itself Is The Complete Course Elaborated!</p>
+              </div>
+              <div class="card-body" v-else>
+                <h4 class="card-title">ई-बुक</h4>
+                <p>आपके सभी प्रश्नों के लिए एक पूर्ण गाइड जो अपने आप में ही विस्तृत और संपूर्ण पाठ्यक्रम है।</p>
               </div>
             </div>
 
@@ -186,11 +194,15 @@
               <div class="feature-img">
                 <img src="../assets/feature3.jpg" alt="" class="w-100 h-100">
               </div>
-              <div class="card-body">
+              <div class="card-body" v-if="language === 'en'">
                 <h4 class="card-title">Workbook</h4>
                 <p>A WorkBook To Do It Yourself! Action Plans To Work On and 
                   Question To Answer To Deepen Your Understanding and 
                   Preparing The Warrior Inside You For The Real Battle Of Life!</p>
+              </div>
+              <div class="card-body" v-else>
+                <h4 class="card-title">वर्कबुक</h4>
+                <p>खुद से काम करने के लिए वर्कबुक। और आपकी समझ को और गहरा करने के लिए और आपको हर चुनौती के लिए तैयार करने के लिए ऐक्शन प्लान्स भी।</p>
               </div>
             </div>
 
@@ -198,11 +210,15 @@
               <div class="feature-img">
                 <img src="../assets/feature4.jpg" alt="" class="w-100 h-100">
               </div>
-              <div class="card-body">
+              <div class="card-body" v-if="language === 'en'">
                 <h4 class="card-title">Certificate</h4>
                 <p>This Course Will Transform Your Personality and Will Make You The 
                   Best Version Of YourSelf!On Completing The Comprehensive Course 
                   Provide You With The Certificate Signed By PRT!</p>
+              </div>
+              <div class="card-body" v-else>
+                <h4 class="card-title">सर्टिफिकेट</h4>
+                <p>यह कोर्स आपकी पर्सनालिटी को बदल देगा और आपको खुद का सबसे अच्छा संस्करण बना देगा। इस कोर्स को पूरा करने के बाद आपको  पुष्कर राज ठाकुर(PRT) द्वारा हस्ताक्षरित प्रमाणपत्र (Certificate) भी मिलेगा।</p>
               </div>
             </div>
 
@@ -304,7 +320,8 @@
         isLoggedIn: false,
         hasPaid: false,
         user: null,
-        loading: false
+        loading: false,
+        language: 'en'
       }
     },
     methods: {
@@ -345,6 +362,8 @@
         if(user.payment) {
           this.hasPaid = true;
         }
+        this.language = this.$store.getters.language;
+        console.log("language ", this.language);
         console.log(firebase.auth().currentUser);
         // let jumbo = document.getElementsByClassName('jumbotron', 'main');
         // jumbo = jumbo[0];
