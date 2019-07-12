@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import firebase from './firebase'
 import axios from './axios'
+import { resolve } from 'path';
 
 Vue.use(Vuex)
 

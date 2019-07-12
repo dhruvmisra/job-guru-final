@@ -90,13 +90,16 @@
           </div>
 
 
-          <div class="card how-it-works border-0" v-else>
+          <div class="card how-it-works border-0" v-if="isLoggedIn ">
             <div class="card-title">
-              <div class="heading text-center">
+              <div class="heading text-center" v-if="!hasPaid">
                 <h2><span>How </span> It Works?</h2>
               </div>
+              <div class="heading text-center" v-else>
+                <h2><span>Congratulations </span></h2>
+              </div>
             </div>
-            <div class="card-body">
+            <div class="card-body" v-if="!hasPaid">
               <ol>
                 <li>Click on the button below to proceed and make the payment.</li>
                 <li>Once the payment is done you will 
@@ -105,8 +108,16 @@
                 <li>You can click on the link to start your job excellence course.</li>
               </ol>
             </div>
+            <div class="card-body text-center" v-else>
+              <p>The course login details will be sent to your E-mail address</p>
+            </div>
 
-            <section v-if="!hasPaid">
+
+
+            <div class="spinner-border mx-auto my-5" role="status" v-if="axiosLoading">
+              <span class="sr-only">Loading...</span>
+            </div>
+            <section v-if="!hasPaid && !axiosLoading">
                 <div class="row justify-content-center">
                   <div class="card package standard mx-auto">
                     <div class="card-body pt-5">
@@ -126,22 +137,13 @@
                     </div>
                   </div>
 
-                  <!-- <div class="card package premium">
-                    <div class="card-body">
-                      <h2 class="price">What you get?</h2>
-                      <ul class="package-info align-middle">
-                        <li>Resume Building</li>
-                        <li>Personality Development Course</li>
-                      </ul>
-                    </div>
-                  </div> -->
                 </div>
             </section>
 
-            <section v-else>
+            <section v-if="!axiosLoading && hasPaid">
               <div class="row mx-auto justify-content-center">
-                <router-link to="/resume-form" tag="button" class="btn btn-primary">Create your resume</router-link>
-                <router-link to="/resume" tag="button" class="btn btn-info">View your resume</router-link>
+                <router-link to="/resume-form" tag="button" class="btn btn-primary m-5 py-4">Create your resume</router-link>
+                <router-link to="/resume" tag="button" class="btn btn-info m-5 py-4">View your resume</router-link>
               </div>
             </section>
 
@@ -319,6 +321,7 @@
 <script>
   import axios from '../axios';
   import firebase from '../firebase';
+import { setTimeout } from 'timers';
 
   export default {
     data() {
@@ -327,6 +330,7 @@
         hasPaid: false,
         user: null,
         loading: false,
+        axiosLoading: true,
         language: 'en'
       }
     },
@@ -363,19 +367,26 @@
     },
     mounted() {
       if(this.$store.getters.user) {
-        this.user = this.$store.getters.user;
         this.isLoggedIn = true;
-        if(this.user.payment) {
-          this.hasPaid = true;
-        }
-        this.language = this.$store.getters.language;
-        console.log("language ", this.language);
-        console.log(firebase.auth().currentUser);
+      }
+      axios.get('getUserData/' + firebase.auth().currentUser.uid)
+        .then(res => {
+          this.axiosLoading = false;
+          if(res.data) {
+            this.user = res.data;
+            if(this.user.payment) {
+              this.hasPaid = true;
+            }
+          }
+        });
+
+        //console.log("language ", this.language);
+        //console.log(firebase.auth().currentUser);
         // let jumbo = document.getElementsByClassName('jumbotron', 'main');
         // jumbo = jumbo[0];
         // jumbo.classList.remove('default');
         // jumbo.classList.add('loggedIn');
-      }
+
     }
   }
 </script>
