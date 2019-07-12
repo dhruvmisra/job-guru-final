@@ -21,18 +21,12 @@
         </div>
 
         <div class="container text-center jumbo-text" v-else>
-<<<<<<< HEAD
-          <h1 class="text-white">Having talent and still not getting suitable jobs?</h1>
-          <p class="text-muted">So here is JobGuru for you to get your dream jobs.</p>
-          <router-link to="/signup" tag="button" class="btn btn-primary btn-lg mb-5">Sign Up</router-link>
-=======
           <h1 class="text-white" v-if="language === 'en'">Having talent and still not getting suitable jobs?</h1>
           <h1 class="text-white" v-else>क्या आपके पास टैलेंट होते हुए भी एक अच्छी नौकरी नहीं है?</h1>
           <p class="text-muted" v-if="language === 'en'">So here is JobGuru for you to get your dream jobs by hand-crafting your resume.</p>
           <p class="text-muted" v-else>अगर ऐसा है तो आपको चिंता करने की जरूरत नहीं है क्यूंकि आपके पास है OURJOBGURU तो देर किस बात की</p>
           <router-link to="/signup" tag="button" class="btn btn-primary btn-lg mb-5" v-if="language === 'en'">Sign Up</router-link>
           <router-link to="/signup" tag="button" class="btn btn-primary btn-lg mb-5" v-else>साइन अप</router-link>
->>>>>>> 7c36adac9307d14152f9678656bde30a1331a1ae
         </div>
 
         <!-- Who are we -->
@@ -231,6 +225,7 @@
               <div class="feature-img">
                 <img src="../assets/feature4.jpg" alt="" class="w-100 h-100">
               </div>
+
               <div class="card-body" v-if="language === 'en'">
                 <h4 class="card-title">Certificate</h4>
                 <p>This Course Will Transform Your Personality and Will Make You The 
@@ -344,7 +339,6 @@ import { setTimeout } from 'timers';
         user: null,
         loading: false,
         axiosLoading: true,
-        language: 'en'
       }
     },
     methods: {
@@ -378,6 +372,11 @@ import { setTimeout } from 'timers';
           });
       },
     },
+    computed: {
+      language() {
+        return this.$store.getters.language;
+      }
+    },
     mounted() {
       if(this.$store.getters.user) {
         this.isLoggedIn = true;
@@ -393,7 +392,7 @@ import { setTimeout } from 'timers';
           }
         });
 
-        //console.log("language ", this.language);
+        console.log("language ", this.language);
         //console.log(firebase.auth().currentUser);
         // let jumbo = document.getElementsByClassName('jumbotron', 'main');
         // jumbo = jumbo[0];

@@ -9,29 +9,38 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ml-auto">
                 <!-- <router-link to="/why-us" tag="a" class="nav-item nav-link mx-md-auto">Why Us</router-link> -->
-                <router-link to="/case-studies" tag="a" class="nav-item nav-link mx-md-auto">Case Studies</router-link>
-                <router-link to="/about-us" tag="a" class="nav-item nav-link mx-md-auto">About Us</router-link>
-                <!-- <a class="nav-link dropdown-toggle mx-md-auto" href="#" id="navbarDropdownLanguageLink"
-                   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Languages
-                </a>
-                <div class="dropdown-menu dropdown-menu-right mx-md-auto language-option" aria-labelledby="navbarDropdownLanguageLink">
-                    <router-link to='/resume' tag="button" class="dropdown-item">Hindi</router-link>
-                    <button class="dropdown-item">English</button>
-                </div> -->
-                <router-link to="/signin" v-if="!isLoggedIn" tag="button"
-                             class="btn btn-outline-primary mx-2 mx-md-auto">Sign In
-                </router-link>
-
-                <a class="nav-link dropdown-toggle mx-md-auto" v-if="isLoggedIn" href="#" id="navbarDropdownMenuLink"
-                   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{ currentUser.email }}
-                </a>
-                <div class="dropdown-menu dropdown-menu-right mx-md-auto" aria-labelledby="navbarDropdownMenuLink">
-                    <router-link to='/resume' tag="button" class="dropdown-item">My Resume</router-link>
-                    <button class="dropdown-item">My Orders</button>
-                    <button @click="logout" class="dropdown-item">Logout</button>
-                </div>
+                <li class="nav-item">
+                    <router-link to="/case-studies" tag="a" class="nav-item nav-link mx-md-auto">Case Studies</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link to="/about-us" tag="a" class="nav-item nav-link mx-md-auto">About Us</router-link>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link dropdown-toggle mx-md-auto" href="#" id="navbarDropdownLanguageLink"
+                    role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Languages
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right mx-md-auto language-option" aria-labelledby="navbarDropdownLanguageLink">
+                        <a role="button" class="dropdown-item" @click="switchToLanguage('hi')">Hindi</a>
+                        <a role="button" class="dropdown-item" @click="switchToLanguage('en')">English</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <router-link to="/signin" v-if="!isLoggedIn" tag="button"
+                                class="btn btn-outline-primary mx-2 mx-md-auto">Sign In
+                    </router-link>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link dropdown-toggle mx-md-auto" v-if="isLoggedIn" href="#" id="navbarDropdownMenuLink"
+                    role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ currentUser.email }}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right mx-md-auto" aria-labelledby="navbarDropdownMenuLink">
+                        <router-link to='/resume' tag="button" class="dropdown-item">My Resume</router-link>
+                        <button class="dropdown-item">My Orders</button>
+                        <button @click="logout" class="dropdown-item">Logout</button>
+                    </div>
+                </li>
 
             </div>
         </div>
@@ -76,7 +85,7 @@
 <style>
     .language-option {
         position:absolute;
-        right: 100px !important;
+        right: 250px !important;
     }
 
 </style>
