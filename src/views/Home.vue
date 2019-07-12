@@ -355,8 +355,8 @@ import { setTimeout } from 'timers';
             phone: contact,
             lastname: 'abc',
             firstname: 'def',
-            surl: 'http://192.168.0.105:3000/payu/success',
-            furl: 'http://192.168.0.105:3000/payu/fail'
+            surl: 'https://floating-reef-97336.herokuapp.com/payu/success',
+            furl: 'https://floating-reef-97336.herokuapp.com/payu/fail'
           },
           userData: {
             userId: this.user.uid
@@ -379,13 +379,15 @@ import { setTimeout } from 'timers';
     },
     mounted() {
       if(this.$store.getters.user) {
+        this.user = this.$store.getters.user;
         this.isLoggedIn = true;
       }
       axios.get('getUserData/' + firebase.auth().currentUser.uid)
         .then(res => {
           this.axiosLoading = false;
+          console.log(res.data);
           if(res.data) {
-            this.user = res.data;
+            this.user.deatails = res.data;
             if(this.user.payment) {
               this.hasPaid = true;
             }
